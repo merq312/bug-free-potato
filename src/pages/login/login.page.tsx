@@ -1,9 +1,9 @@
 import { useAuth0 } from '@auth0/auth0-react'
 
 const buttonStyles =
-  'text-white border-2 border-transparent p-2 my-6 rounded bg-green-400 shadow-md hover:bg-green-600 transition duration-500 ease-in-out transform hover:-translate-y-1'
+  'text-white border-2 border-transparent p-2 my-6 rounded bg-green-400 shadow-md hover:bg-green-600 transition duration-500 ease-in-out'
 
-function Login() {
+function LoginPage() {
   const { loginWithRedirect } = useAuth0()
 
   return (
@@ -15,4 +15,4 @@ function Login() {
   )
 }
 
-export default Login
+export default LoginPage

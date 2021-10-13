@@ -1,21 +1,21 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
-import { Auth0Provider } from '@auth0/auth0-react'
+import React from "react"
+import ReactDOM from "react-dom"
+import { BrowserRouter } from "react-router-dom"
+import { Auth0Provider } from "@auth0/auth0-react"
 
-import App from './App'
-import { store } from './app/store'
-import { Provider } from 'react-redux'
-import * as serviceWorker from './serviceWorker'
+import App from "./App"
+import { store } from "./app/store"
+import { Provider } from "react-redux"
+import * as serviceWorker from "./serviceWorker"
 
-import './index.css'
+import "./index.css"
 
 ReactDOM.render(
   <React.StrictMode>
     <Auth0Provider
       domain="dev-iukg50h5.us.auth0.com"
       clientId="JNiZqluYFD7grpEiAMRczMQRSIFG2yqk"
-      redirectUrl={window.location.origin}
+      redirectUri={window.location.origin}
     >
       <Provider store={store}>
         <BrowserRouter>
@@ -24,7 +24,7 @@ ReactDOM.render(
       </Provider>
     </Auth0Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 )
 
 // If you want your app to work offline and load faster, you can change

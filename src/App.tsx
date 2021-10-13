@@ -1,20 +1,20 @@
-import { Route, Switch } from 'react-router-dom'
-import Home from './pages/home/home'
-import Login from './pages/login/login'
-import Header from './components/header/header.component'
-import Footer from './components/footer/footer.component'
+import { Route, Switch } from "react-router-dom"
+import HomePage from "./pages/home/home.page"
+import LoginPage from "./pages/login/login.page"
+import HeaderComponent from "./components/header/header.component"
+import FooterComponent from "./components/footer/footer.component"
 
 function App() {
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
-      <main className="flex-grow grid grid-cols-12">
+      <HeaderComponent />
+      <main className="flex-grow grid grid-cols-12 bg-gray-700">
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/login" component={LoginPage} />
         </Switch>
       </main>
-      <Footer />
+      <FooterComponent />
     </div>
   )
 }
