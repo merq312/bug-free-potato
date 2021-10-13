@@ -1,0 +1,4 @@
+target
+client/*
+
+!/client/build/**
