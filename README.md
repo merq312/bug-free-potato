@@ -1,3 +1,3 @@
 🍎🐛
 
-Just a project skeleton for now..
+Fancy instant messenger using Actix-React. WIP
