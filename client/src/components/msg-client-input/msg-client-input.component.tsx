@@ -23,7 +23,7 @@ function MsgClientInputComponent() {
         className="h-full flex flex-row items-center justify-around"
       >
         <textarea
-          className="h-12 flex-grow ml-4 px-4 rounded-3xl bg-gray-300 focus:outline-none"
+          className="h-12 flex-grow ml-4 px-4 pt-1.5 rounded-3xl bg-gray-300 focus:outline-none align-middle"
           name="user-input"
           value={userInput}
           onChange={handleChange}

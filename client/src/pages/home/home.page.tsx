@@ -8,7 +8,11 @@ function HomePage() {
   return (
     <>
       {isLoading ? (
-        <p>Loading...</p>
+        <div className="flex flex-col justify-center col-start-6 col-end-8">
+          <p className="text-white font-bold w-full text-4xl text-center">
+            Loading...
+          </p>
+        </div>
       ) : isAuthenticated ? (
         <MsgClientComponent />
       ) : (
