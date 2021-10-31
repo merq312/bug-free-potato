@@ -12,8 +12,8 @@ function MsgClientInputComponent() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
-    setUserInput("")
     dispatch(send(userInput))
+    setUserInput("")
   }
 
   return (
