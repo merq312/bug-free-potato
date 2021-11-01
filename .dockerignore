@@ -1,4 +1,0 @@
-target
-client/*
-
-!/client/build/**

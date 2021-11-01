@@ -1,3 +1,5 @@
 🍎🐛
 
-Fancy instant messenger using Actix-React. WIP
+Fancy instant messenger project. WIP
+
+Stack: Express, Socketio, React, Redux, Tailwindcss
