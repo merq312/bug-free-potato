@@ -7,7 +7,7 @@ function MsgClientComponent() {
   const messages = useAppSelector(selectMessages)
 
   return (
-    <div className="flex flex-col text-2xl col-start-3 col-end-11">
+    <div className="flex flex-col text-2xl lg:col-start-3 lg:col-end-11 col-start-1 col-end-13">
       <div className="h-full bg-gray-300 flex flex-col justify-end">
         {messages.map((message) => (
           <MsgClientItemComponent message={message} />

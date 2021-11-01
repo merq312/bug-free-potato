@@ -6,7 +6,7 @@ function MsgClientInputComponent() {
   const dispatch = useAppDispatch()
   const [userInput, setUserInput] = useState("")
 
-  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value)
   }
 
@@ -17,18 +17,20 @@ function MsgClientInputComponent() {
   }
 
   return (
-    <div className="bg-gray-400 h-16">
+    <div className="bg-gray-300">
       <form
         onSubmit={handleSubmit}
-        className="h-full flex flex-row items-center justify-around"
+        className="h-full flex items-center justify-around"
       >
-        <textarea
-          className="h-12 flex-grow ml-4 px-4 pt-1.5 rounded-3xl bg-gray-300 focus:outline-none align-middle"
+        <div className="px-3 text-gray-700">Guest</div>
+        <input
+          className="h-12 flex-grow my-3 px-6 py-1.5 rounded-xl bg-gray-200 focus:outline-none align-middle resize-none"
           name="user-input"
           value={userInput}
+          type="text"
           onChange={handleChange}
         />
-        <button type="submit" className="w-24 text-gray-700 font-bold">
+        <button type="submit" className="px-4 text-gray-700 font-bold">
           Send
         </button>
       </form>
