@@ -12,7 +12,9 @@ export interface MessageState {
 }
 
 const initialState: MessageState = {
-  messages: [{ content: "hello world", username: "guest", sentAt: "123123" }],
+  messages: [
+    { content: "hello world", username: "guest", sentAt: "5 mins ago" },
+  ],
 }
 
 export const messageSlice = createSlice({
