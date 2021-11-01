@@ -1,19 +1,25 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { RootState } from "../../app/store"
 
+export interface Message {
+  content: string
+  username: string
+  sentAt: string
+}
+
 export interface MessageState {
-  messages: Array<string>
+  messages: Array<Message>
 }
 
 const initialState: MessageState = {
-  messages: ["hello world", "good morning"],
+  messages: [{ content: "hello world", username: "guest", sentAt: "123123" }],
 }
 
 export const messageSlice = createSlice({
   name: "messages",
   initialState,
   reducers: {
-    send: (state, action: PayloadAction<string>) => {
+    send: (state, action: PayloadAction<Message>) => {
       state.messages = state.messages.concat(action.payload)
     },
   },

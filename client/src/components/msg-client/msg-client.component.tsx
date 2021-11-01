@@ -18,14 +18,23 @@ function MsgClientComponent() {
   })
 
   const sendMessage = (msg: string) => {
-    dispatch(send(msg))
+    dispatch(
+      send({
+        content: msg,
+        username: "guest",
+        sentAt: new Date().toDateString(),
+      })
+    )
   }
 
   return (
     <div className="flex flex-col text-2xl lg:col-start-3 lg:col-end-11 col-start-1 col-end-13">
       <div className="h-full bg-gray-300 flex flex-col justify-end">
         {messages.map((message) => (
-          <MsgClientItemComponent message={message} />
+          <MsgClientItemComponent
+            key={message.sentAt}
+            message={message.content}
+          />
         ))}
       </div>
       <MsgClientInputComponent sendMessage={sendMessage} />
