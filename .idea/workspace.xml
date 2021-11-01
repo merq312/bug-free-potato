@@ -4,23 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4768f288-5e9c-4bba-8727-7643904a261c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
+    <list default="true" id="4768f288-5e9c-4bba-8727-7643904a261c" name="Changes" comment="clean up styles, remove unused components">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.prettierrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/footer/footer.component.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/header/header.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/header/header.component.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/msg-client-input/msg-client-input.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/msg-client-input/msg-client-input.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/msg-client-item/msg-client-item.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/msg-client-item/msg-client-item.component.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/msg-client/msg-client.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/msg-client/msg-client.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/home/home.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/home/home.page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/login/login.page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +48,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\merc3\Code\my-app\node_modules\prettier" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.prettier" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="ts.external.directory.path" value="C:\Users\merc3\Code\my-app\client\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -78,8 +65,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1635736630265</updated>
-      <workItem from="1635736632038" duration="4236000" />
+      <workItem from="1635736632038" duration="6199000" />
     </task>
+    <task id="LOCAL-00001" summary="clean up styles, remove unused components">
+      <created>1635741489787</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1635741489787</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -98,6 +93,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="clean up styles, remove unused components" />
+    <option name="LAST_COMMIT_MESSAGE" value="clean up styles, remove unused components" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

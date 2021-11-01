@@ -1,9 +1,10 @@
 import { ChangeEvent, FormEvent, useState } from "react"
-import { useAppDispatch } from "../../app/hooks"
-import { send } from "../../features/messages/messageSlice"
 
-function MsgClientInputComponent() {
-  const dispatch = useAppDispatch()
+type AppProps = {
+  sendMessage: (arg0: string) => void
+}
+
+function MsgClientInputComponent({ sendMessage }: AppProps) {
   const [userInput, setUserInput] = useState("")
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -12,7 +13,7 @@ function MsgClientInputComponent() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
-    dispatch(send(userInput))
+    sendMessage(userInput)
     setUserInput("")
   }
 
