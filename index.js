@@ -1,49 +1,49 @@
-const path = require("path");
+const path = require("path")
 // const crypto = require("crypto").webcrypto;
-const express = require("express");
-const app = express();
-const http = require("http");
-const server = http.createServer(app);
-const { Server } = require("socket.io");
-const io = new Server(server);
+const express = require("express")
+const app = express()
+const http = require("http")
+const server = http.createServer(app)
+const { Server } = require("socket.io")
+const io = new Server(server)
 
-const onlineUsers = {};
+const onlineUsers = {}
 
 const addUser = (id) => {
   return {
     [id]: "Guest" + Math.floor(Math.random() * 10000),
-  };
-};
+  }
+}
 
-app.use(express.static(path.join(__dirname, "client/build")));
+app.use(express.static(path.join(__dirname, "client/build")))
 
 app.get("*", (req, res) => {
-  const filePath = path.join(__dirname + "/client/build", "index.html");
-  res.sendFile(filePath);
-});
+  const filePath = path.join(__dirname + "/client/build", "index.html")
+  res.sendFile(filePath)
+})
 
 io.on("connection", (socket) => {
   console.log(
     `a user connected: client id (${socket.id}) client ip (${socket.handshake.address})`
-  );
+  )
 
-  Object.assign(onlineUsers, addUser(socket.id));
-  socket.emit("username", onlineUsers[socket.id]);
+  Object.assign(onlineUsers, addUser(socket.id))
+  socket.emit("username", onlineUsers[socket.id])
 
   socket.on("disconnect", () => {
-    console.log("user disconnected");
-  });
-});
+    console.log("user disconnected")
+  })
+})
 
 io.on("connection", (socket) => {
-  socket.on("chat message", (user, msg) => {
-    socket.broadcast.emit("chat message", user, msg);
-  });
-});
+  socket.on("chat message", (msg) => {
+    socket.broadcast.emit("chat message", msg)
+  })
+})
 
 server.listen(3000, () => {
-  console.log("listening on *:3000");
-});
+  console.log("listening on *:3000")
+})
 
 // TODO
 // DONE Dont send the same message to the user that send it
