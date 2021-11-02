@@ -12,11 +12,11 @@ function MsgClientComponent() {
   const user = useAppSelector(selectUser)
   const dispatch = useAppDispatch()
 
-  const sendMessageHelper = (msg: string) => {
+  const sendMessageHelper = (messageContent: string) => {
     dispatch(
       sendMessage({
-        content: msg,
-        username: "guest",
+        content: messageContent,
+        username: user.name,
         sentAt: new Date().getTime().toString(),
       })
     )

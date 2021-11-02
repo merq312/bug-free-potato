@@ -36,8 +36,8 @@ io.on("connection", (socket) => {
 })
 
 io.on("connection", (socket) => {
-  socket.on("chat message", (msg) => {
-    socket.broadcast.emit("chat message", msg)
+  socket.on("chat message", (userName, messageContent) => {
+    socket.broadcast.emit("chat message", userName, messageContent)
   })
 })
 
