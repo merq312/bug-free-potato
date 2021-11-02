@@ -12,7 +12,7 @@ function HeaderComponent() {
         Some Message App
       </h1>
       {isLoading ? (
-        <p>Loading...</p>
+        <p className="text-gray-200 px-4">Loading...</p>
       ) : isAuthenticated ? (
         <button
           className={buttonStyles}

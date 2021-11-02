@@ -5,9 +5,11 @@ import {
   selectMessages,
   sendMessage,
 } from "../../features/messages/messageSlice"
+import { selectUser } from "../../features/user/userSlice"
 
 function MsgClientComponent() {
   const messages = useAppSelector(selectMessages)
+  const user = useAppSelector(selectUser)
   const dispatch = useAppDispatch()
 
   const sendMessageHelper = (msg: string) => {
@@ -24,13 +26,13 @@ function MsgClientComponent() {
     <div className="flex flex-col text-xl sm:text-2xl col-start-1 col-end-13 md:col-start-3 md:col-end-11 ">
       <div className="h-full bg-gray-300 flex flex-col justify-end">
         {messages.map((message) => (
-          <MsgClientItemComponent
-            key={message.sentAt}
-            message={message.content}
-          />
+          <MsgClientItemComponent key={message.sentAt} message={message} />
         ))}
       </div>
-      <MsgClientInputComponent sendMessageHelper={sendMessageHelper} />
+      <MsgClientInputComponent
+        userName={user.name}
+        sendMessageHelper={sendMessageHelper}
+      />
     </div>
   )
 }

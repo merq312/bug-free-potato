@@ -2,9 +2,10 @@ import { ChangeEvent, FormEvent, useState } from "react"
 
 type AppProps = {
   sendMessageHelper: (arg0: string) => void
+  userName: string
 }
 
-function MsgClientInputComponent({ sendMessageHelper }: AppProps) {
+function MsgClientInputComponent({ userName, sendMessageHelper }: AppProps) {
   const [userInput, setUserInput] = useState("")
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +26,7 @@ function MsgClientInputComponent({ sendMessageHelper }: AppProps) {
         onSubmit={handleSubmit}
         className="h-full flex items-center justify-around"
       >
-        <div className="px-3 text-gray-700 hidden sm:block">Guest</div>
+        <div className="px-3 text-gray-700 hidden sm:block">{userName}</div>
         <input
           className="ml-4 sm:ml-0 min-w-0 flex-grow my-3 px-3 py-1.5 rounded-xl bg-gray-200 focus:outline-none align-middle resize-none"
           name="user-input"

@@ -28,7 +28,7 @@ io.on("connection", (socket) => {
   )
 
   Object.assign(onlineUsers, addUser(socket.id))
-  socket.emit("username", onlineUsers[socket.id])
+  socket.emit("guestName", onlineUsers[socket.id])
 
   socket.on("disconnect", () => {
     console.log("user disconnected")
@@ -40,7 +40,6 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("chat message", msg)
   })
 })
-
 
 const port = process.env.PORT || 3000
 server.listen(port, () => {

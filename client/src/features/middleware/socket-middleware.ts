@@ -1,6 +1,7 @@
 import { AnyAction } from "redux"
 import { io } from "socket.io-client"
 import { sendMessage, receiveMessage } from "../messages/messageSlice"
+import { setUserName } from "../user/userSlice"
 
 export const createMySocketMiddleware = () => {
   return (storeAPI: any) => {
@@ -15,6 +16,11 @@ export const createMySocketMiddleware = () => {
           sentAt: new Date().getTime().toString(),
         })
       )
+    })
+
+    // Receive guest name on connect
+    socket.on("guestName", (guestName) => {
+      storeAPI.dispatch(setUserName(guestName))
     })
 
     // Sending a message

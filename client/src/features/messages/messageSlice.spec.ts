@@ -1,22 +1,22 @@
-import messageReducer, { Message, send } from "./messageSlice"
+import messageReducer, { Message, sendMessage } from "./messageSlice"
 
 describe("message reducer", () => {
   const testMessage: Message = {
     content: "Hello jest",
     username: "Tester",
-    sentAt: "10 mins ago",
+    sentAt: "1635872272682",
   }
 
   test("should handle initial state", () => {
     expect(messageReducer(undefined, { type: "unknown" })).toEqual({
       messages: [
-        { content: "hello world", username: "guest", sentAt: "5 mins ago" },
+        { content: "hello world", username: "guest", sentAt: "1635830205267" },
       ],
     })
   })
 
   test("should accept new messages", () => {
-    const actual = messageReducer(undefined, send(testMessage))
+    const actual = messageReducer(undefined, sendMessage(testMessage))
     expect(actual.messages[1].content).toEqual("Hello jest")
   })
 })
