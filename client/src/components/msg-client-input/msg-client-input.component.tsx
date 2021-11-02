@@ -13,7 +13,9 @@ function MsgClientInputComponent({ sendMessage }: AppProps) {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
-    sendMessage(userInput)
+    if (userInput !== "") {
+      sendMessage(userInput)
+    }
     setUserInput("")
   }
 
