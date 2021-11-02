@@ -1,15 +1,18 @@
 import MsgClientInputComponent from "../msg-client-input/msg-client-input.component"
 import MsgClientItemComponent from "../msg-client-item/msg-client-item.component"
 import { useAppSelector, useAppDispatch } from "../../app/hooks"
-import { selectMessages, send } from "../../features/messages/messageSlice"
+import {
+  selectMessages,
+  sendMessage,
+} from "../../features/messages/messageSlice"
 
 function MsgClientComponent() {
   const messages = useAppSelector(selectMessages)
   const dispatch = useAppDispatch()
 
-  const sendMessage = (msg: string) => {
+  const sendMessageHelper = (msg: string) => {
     dispatch(
-      send({
+      sendMessage({
         content: msg,
         username: "guest",
         sentAt: new Date().getTime().toString(),
@@ -27,7 +30,7 @@ function MsgClientComponent() {
           />
         ))}
       </div>
-      <MsgClientInputComponent sendMessage={sendMessage} />
+      <MsgClientInputComponent sendMessageHelper={sendMessageHelper} />
     </div>
   )
 }

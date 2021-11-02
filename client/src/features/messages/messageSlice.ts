@@ -21,16 +21,16 @@ export const messageSlice = createSlice({
   name: "messages",
   initialState,
   reducers: {
-    send: (state, action: PayloadAction<Message>) => {
+    sendMessage: (state, action: PayloadAction<Message>) => {
       state.messages = state.messages.concat(action.payload)
     },
-    receive: (state, action: PayloadAction<Message>) => {
+    receiveMessage: (state, action: PayloadAction<Message>) => {
       state.messages = state.messages.concat(action.payload)
     },
   },
 })
 
-export const { send, receive } = messageSlice.actions
+export const { sendMessage, receiveMessage } = messageSlice.actions
 
 export const selectMessages = (state: RootState) => state.messages.messages
 

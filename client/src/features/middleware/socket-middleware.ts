@@ -1,6 +1,6 @@
 import { AnyAction } from "redux"
 import { io } from "socket.io-client"
-import { send, receive } from "../messages/messageSlice"
+import { sendMessage, receiveMessage } from "../messages/messageSlice"
 
 export const createMySocketMiddleware = () => {
   return (storeAPI: any) => {
@@ -9,7 +9,7 @@ export const createMySocketMiddleware = () => {
     // Receiving a message
     socket.on("chat message", (msg) => {
       storeAPI.dispatch(
-        receive({
+        receiveMessage({
           content: msg,
           username: "guest",
           sentAt: new Date().getTime().toString(),
@@ -19,7 +19,7 @@ export const createMySocketMiddleware = () => {
 
     // Sending a message
     return (next: any) => (action: AnyAction) => {
-      if (send.match(action)) {
+      if (sendMessage.match(action)) {
         socket.emit("chat message", action.payload.content)
       }
 

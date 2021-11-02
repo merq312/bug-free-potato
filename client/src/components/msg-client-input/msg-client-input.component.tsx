@@ -1,10 +1,10 @@
 import { ChangeEvent, FormEvent, useState } from "react"
 
 type AppProps = {
-  sendMessage: (arg0: string) => void
+  sendMessageHelper: (arg0: string) => void
 }
 
-function MsgClientInputComponent({ sendMessage }: AppProps) {
+function MsgClientInputComponent({ sendMessageHelper }: AppProps) {
   const [userInput, setUserInput] = useState("")
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -14,7 +14,7 @@ function MsgClientInputComponent({ sendMessage }: AppProps) {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
     if (userInput !== "") {
-      sendMessage(userInput)
+      sendMessageHelper(userInput)
     }
     setUserInput("")
   }
