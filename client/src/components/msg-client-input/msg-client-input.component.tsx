@@ -25,15 +25,15 @@ function MsgClientInputComponent({ sendMessageHelper }: AppProps) {
         onSubmit={handleSubmit}
         className="h-full flex items-center justify-around"
       >
-        <div className="px-3 text-gray-700">Guest</div>
+        <div className="px-3 text-gray-700 hidden sm:block">Guest</div>
         <input
-          className="h-12 flex-grow my-3 px-6 py-1.5 rounded-xl bg-gray-200 focus:outline-none align-middle resize-none"
+          className="ml-4 sm:ml-0 min-w-0 flex-grow my-3 px-3 py-1.5 rounded-xl bg-gray-200 focus:outline-none align-middle resize-none"
           name="user-input"
           value={userInput}
           type="text"
           onChange={handleChange}
         />
-        <button type="submit" className="px-4 text-gray-700 font-bold">
+        <button type="submit" className="px-2 sm:px-4 text-gray-700 font-bold">
           Send
         </button>
       </form>

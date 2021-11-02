@@ -21,7 +21,7 @@ function MsgClientComponent() {
   }
 
   return (
-    <div className="flex flex-col text-2xl lg:col-start-3 lg:col-end-11 col-start-1 col-end-13">
+    <div className="flex flex-col text-xl sm:text-2xl col-start-1 col-end-13 md:col-start-3 md:col-end-11 ">
       <div className="h-full bg-gray-300 flex flex-col justify-end">
         {messages.map((message) => (
           <MsgClientItemComponent

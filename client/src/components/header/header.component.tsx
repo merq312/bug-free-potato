@@ -8,7 +8,9 @@ function HeaderComponent() {
 
   return (
     <header className="bg-gray-700 flex items-center justify-between w-screen h-16 border-b-2 border-gray-200">
-      <h1 className="text-gray-200 text-2xl font-bold m-2">Some Message App</h1>
+      <h1 className="text-gray-200 text-xl sm:text-2xl font-bold m-2">
+        Some Message App
+      </h1>
       {isLoading ? (
         <p>Loading...</p>
       ) : isAuthenticated ? (
