@@ -13,7 +13,7 @@ export interface MessageState {
 
 const initialState: MessageState = {
   messages: [
-    { content: "hello world", username: "guest", sentAt: "5 mins ago" },
+    { content: "hello world", username: "guest", sentAt: "1635830205267" },
   ],
 }
 
@@ -24,10 +24,13 @@ export const messageSlice = createSlice({
     send: (state, action: PayloadAction<Message>) => {
       state.messages = state.messages.concat(action.payload)
     },
+    receive: (state, action: PayloadAction<Message>) => {
+      state.messages = state.messages.concat(action.payload)
+    },
   },
 })
 
-export const { send } = messageSlice.actions
+export const { send, receive } = messageSlice.actions
 
 export const selectMessages = (state: RootState) => state.messages.messages
 
