@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
+    "build": "cd client && npm run build",
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install && npm install --only=dev --noshrinkwrap && npm run build"
   },
   "keywords": [],
   "author": "",
