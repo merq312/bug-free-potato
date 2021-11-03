@@ -45,12 +45,3 @@ const port = process.env.PORT || 3000
 server.listen(port, () => {
   console.log("listening on *:" + port)
 })
-
-// TODO
-// DONE Dont send the same message to the user that send it
-// DONE Show nickname / guest number
-// Show list of online members
-// Add private messaging
-// Add rooms
-// Redis for memcache
-// Wireup a database to store messages
