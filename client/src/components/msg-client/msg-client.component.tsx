@@ -9,14 +9,14 @@ import {
   selectMessages,
   sendMessage,
 } from "../../features/messages/messageSlice"
-import { selectUser } from "../../features/user/userSlice"
+import { selectuserName } from "../../features/user/userSlice"
 
 function MsgClientComponent() {
   TimeAgo.addDefaultLocale(en)
   const timeAgo = new TimeAgo("en-US")
 
   const messages = useAppSelector(selectMessages)
-  const user = useAppSelector(selectUser)
+  const userName = useAppSelector(selectuserName)
   const dispatch = useAppDispatch()
 
   const [messageTimeStamps, setMessageTimeStamps] = useState(
@@ -43,7 +43,7 @@ function MsgClientComponent() {
     dispatch(
       sendMessage({
         content: messageContent,
-        username: user.name,
+        userName: userName,
         sentAt: new Date().getTime().toString(),
       })
     )
@@ -61,7 +61,7 @@ function MsgClientComponent() {
         ))}
       </div>
       <MsgClientInputComponent
-        userName={user.name}
+        userName={userName}
         sendMessageHelper={sendMessageHelper}
       />
     </div>

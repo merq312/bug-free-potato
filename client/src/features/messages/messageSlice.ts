@@ -3,7 +3,7 @@ import { RootState } from "../../app/store"
 
 export interface Message {
   content: string
-  username: string
+  userName: string
   sentAt: string
 }
 
@@ -13,7 +13,7 @@ export interface MessageState {
 
 const initialState: MessageState = {
   messages: [
-    { content: "hello world", username: "guest", sentAt: "1635830205267" },
+    { content: "hello world", userName: "guest", sentAt: "1635830205267" },
   ],
 }
 

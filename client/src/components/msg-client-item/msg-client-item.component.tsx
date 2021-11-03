@@ -14,7 +14,7 @@ function MsgClientItemComponent({ message, messageTimeStamp }: AppProps) {
             {messageTimeStamp ? messageTimeStamp : "just now"}
           </div>
           <div className="text-gray-700 text-sm font-bold">
-            {message.username}
+            {message.userName}
           </div>
         </div>
         <div className="text-gray-700 text-right">{message.content}</div>

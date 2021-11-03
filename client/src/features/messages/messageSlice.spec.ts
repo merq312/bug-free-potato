@@ -3,14 +3,14 @@ import messageReducer, { Message, sendMessage } from "./messageSlice"
 describe("message reducer", () => {
   const testMessage: Message = {
     content: "Hello jest",
-    username: "Tester",
+    userName: "Tester",
     sentAt: "1635872272682",
   }
 
   test("should handle initial state", () => {
     expect(messageReducer(undefined, { type: "unknown" })).toEqual({
       messages: [
-        { content: "hello world", username: "guest", sentAt: "1635830205267" },
+        { content: "hello world", userName: "guest", sentAt: "1635830205267" },
       ],
     })
   })
