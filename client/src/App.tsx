@@ -4,9 +4,9 @@ import HeaderComponent from "./components/header/header.component"
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col h-screen">
       <HeaderComponent />
-      <main className="flex-grow grid grid-cols-12 text-xl sm:text-2xl  bg-gray-700 ">
+      <main className="grid grid-cols-12 overflow-hidden h-full text-xl sm:text-2xl  bg-gray-700 ">
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={HomePage} />
