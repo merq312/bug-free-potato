@@ -30,6 +30,7 @@ function MsgClientInputComponent({ userName, sendMessageHelper }: AppProps) {
         <input
           className="ml-4 sm:ml-0 min-w-0 flex-grow my-3 px-3 py-1.5 rounded-xl bg-gray-200 focus:outline-none align-middle resize-none"
           name="user-input"
+          autoComplete="off"
           value={userInput}
           type="text"
           onChange={handleChange}
