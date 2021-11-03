@@ -3,7 +3,7 @@ import { logger } from "redux-logger"
 import counterReducer from "../features/counter/counterSlice"
 import messageReducer from "../features/messages/messageSlice"
 import userReducer from "../features/user/userSlice"
-import { createMySocketMiddleware } from "../features/middleware/socket-middleware"
+import { createSocketMiddleware } from "../features/middleware/socket.middleware"
 
 export const store = configureStore({
   reducer: {
@@ -12,7 +12,7 @@ export const store = configureStore({
     user: userReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(createMySocketMiddleware(), logger),
+    getDefaultMiddleware().concat(createSocketMiddleware(), logger),
 })
 
 export type AppDispatch = typeof store.dispatch
