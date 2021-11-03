@@ -1,4 +1,6 @@
-import { ChangeEvent, FormEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useEffect, useState } from "react"
+import { useAppDispatch } from "../../app/hooks"
+import { setUserName } from "../../features/user/userSlice"
 
 type AppProps = {
   sendMessageHelper: (arg0: string) => void
@@ -7,9 +9,20 @@ type AppProps = {
 
 function MsgClientInputComponent({ userName, sendMessageHelper }: AppProps) {
   const [userInput, setUserInput] = useState("")
+  const [displayName, setDisplayName] = useState(userName)
+  const dispatch = useAppDispatch()
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  useEffect(() => {
+    setDisplayName(userName)
+  }, [userName])
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value)
+  }
+
+  const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setDisplayName(e.target.value)
+    dispatch(setUserName(e.target.value))
   }
 
   const handleSubmit = (e: FormEvent) => {
@@ -24,20 +37,32 @@ function MsgClientInputComponent({ userName, sendMessageHelper }: AppProps) {
     <div className="bg-gray-300">
       <form
         onSubmit={handleSubmit}
-        className="h-full flex items-center justify-around"
+        className="h-full grid grid-cols-12 items-center justify-around"
       >
-        <div className="px-3 text-gray-700 hidden sm:block">{userName}</div>
         <input
-          className="ml-4 sm:ml-0 min-w-0 flex-grow my-3 px-3 py-1.5 rounded-xl bg-gray-200 focus:outline-none align-middle resize-none"
-          name="user-input"
+          className="col-start-1 col-end-3 px-3 text-gray-700 bg-gray-300 focus:outline-none resize-none"
+          name="user-name"
           autoComplete="off"
-          value={userInput}
+          value={displayName}
           type="text"
-          onChange={handleChange}
+          onChange={handleNameChange}
         />
-        <button type="submit" className="px-2 sm:px-4 text-gray-700 font-bold">
-          Send
-        </button>
+        <div className="col-start-3 col-end-13 ml-2 flex">
+          <input
+            className="flex-grow min-w-0 my-3 px-3 py-1.5 rounded-xl bg-gray-200 focus:outline-none resize-none"
+            name="user-input"
+            autoComplete="off"
+            value={userInput}
+            type="text"
+            onChange={handleInputChange}
+          />
+          <button
+            type="submit"
+            className="px-2 sm:px-4 text-gray-700 font-bold"
+          >
+            Send
+          </button>
+        </div>
       </form>
     </div>
   )

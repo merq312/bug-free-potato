@@ -15,7 +15,7 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setuserName: (state, action: PayloadAction<string>) => {
+    setUserName: (state, action: PayloadAction<string>) => {
       state.self = action.payload
     },
     updateUserList: (state, action: PayloadAction<Array<string>>) => {
@@ -24,7 +24,7 @@ export const userSlice = createSlice({
   },
 })
 
-export const { setuserName, updateUserList } = userSlice.actions
+export const { setUserName, updateUserList } = userSlice.actions
 
 export const selectuserName = (state: RootState) => state.user.self
 export const selectUserList = (state: RootState) => state.user.userList

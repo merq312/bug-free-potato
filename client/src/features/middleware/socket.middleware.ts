@@ -1,7 +1,7 @@
 import { AnyAction } from "redux"
 import { io } from "socket.io-client"
 import { sendMessage, receiveMessage } from "../messages/messageSlice"
-import { setuserName, updateUserList } from "../user/userSlice"
+import { setUserName, updateUserList } from "../user/userSlice"
 
 export const createSocketMiddleware = () => {
   return (storeAPI: any) => {
@@ -25,16 +25,24 @@ export const createSocketMiddleware = () => {
 
     // Receive guest name on connect
     socket.on("guest name", (guestName) => {
-      storeAPI.dispatch(setuserName(guestName))
+      storeAPI.dispatch(setUserName(guestName))
     })
 
-    // Sending a message
     return (next: any) => (action: AnyAction) => {
+      // Sending a message
       if (sendMessage.match(action)) {
         socket.emit(
           "chat message",
           action.payload.userName,
           action.payload.content
+        )
+      }
+
+      // Updating user name
+      if (setUserName.match(action)) {
+        socket.emit(
+          "set user name",
+          action.payload
         )
       }
 

@@ -42,6 +42,11 @@ io.on("connection", (socket) => {
   socket.on("chat message", (userName, messageContent) => {
     socket.broadcast.emit("chat message", userName, messageContent)
   })
+
+  socket.on("set user name", (userName) => {
+    onlineUsers[socket.id] = userName
+    io.emit("user list", Object.values(onlineUsers))
+  })
 })
 
 const port = process.env.PORT || 3000
