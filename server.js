@@ -29,12 +29,12 @@ io.on("connection", (socket) => {
 
   Object.assign(onlineUsers, addUser(socket.id))
   socket.emit("guest name", onlineUsers[socket.id])
-  socket.broadcast.emit("user list", onlineUsers)
+  io.emit("user list", Object.values(onlineUsers))
 
   socket.on("disconnect", () => {
     console.log("user disconnected")
     delete onlineUsers[socket.id]
-    socket.broadcast.emit("user list", onlineUsers)
+    io.emit("user list", Object.values(onlineUsers))
   })
 })
 

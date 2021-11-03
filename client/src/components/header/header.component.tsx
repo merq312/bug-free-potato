@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react"
 
 const buttonStyles =
-  "m-2 text-black border-2 border-transparent p-2 my-6 rounded-xl bg-blue-200 shadow-md hover:bg-blue-300 transition duration-500 ease-in-out"
+  " p-2 my-6 mx-2 text-sm sm:text-base text-black border-2 border-transparent rounded-xl bg-blue-200 shadow-md hover:bg-blue-300 transition duration-500 ease-in-out"
 
 function HeaderComponent() {
   const { logout, loginWithRedirect, isAuthenticated, isLoading } = useAuth0()

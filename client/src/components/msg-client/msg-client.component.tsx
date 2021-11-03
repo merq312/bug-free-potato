@@ -9,14 +9,16 @@ import {
   selectMessages,
   sendMessage,
 } from "../../features/messages/messageSlice"
-import { selectuserName } from "../../features/user/userSlice"
+import { selectuserName, selectUserList } from "../../features/user/userSlice"
+import MsgClientUserListComponent from "../msg-client-user-list/msg-client-user-list.component"
+
+TimeAgo.addDefaultLocale(en)
+const timeAgo = new TimeAgo("en-US")
 
 function MsgClientComponent() {
-  TimeAgo.addDefaultLocale(en)
-  const timeAgo = new TimeAgo("en-US")
-
   const messages = useAppSelector(selectMessages)
   const userName = useAppSelector(selectuserName)
+  const userList = useAppSelector(selectUserList)
   const dispatch = useAppDispatch()
 
   const [messageTimeStamps, setMessageTimeStamps] = useState(
@@ -50,15 +52,20 @@ function MsgClientComponent() {
   }
 
   return (
-    <div className="flex flex-col text-xl sm:text-2xl col-start-1 col-end-13 md:col-start-3 md:col-end-11 ">
-      <div className="h-full bg-gray-300 flex flex-col justify-end">
-        {messages.map((message, index) => (
-          <MsgClientItemComponent
-            key={message.sentAt}
-            message={message}
-            messageTimeStamp={messageTimeStamps[index]}
-          />
-        ))}
+    <div className=" flex flex-col col-start-1 col-end-13 md:col-start-3 md:col-end-11">
+      <div className="h-full grid grid-cols-12">
+        <div className="h-full bg-gray-400 col-start-1 col-end-3">
+          <MsgClientUserListComponent userList={userList} />
+        </div>
+        <div className="h-full bg-gray-300 flex flex-col justify-end col-start-3 col-end-13">
+          {messages.map((message, index) => (
+            <MsgClientItemComponent
+              key={message.sentAt}
+              message={message}
+              messageTimeStamp={messageTimeStamps[index]}
+            />
+          ))}
+        </div>
       </div>
       <MsgClientInputComponent
         userName={userName}

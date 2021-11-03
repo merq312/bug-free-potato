@@ -18,6 +18,7 @@ export const createSocketMiddleware = () => {
       )
     })
 
+    // Recieve list of online users (whenever it changes)
     socket.on("user list", (onlineUsers) => {
       storeAPI.dispatch(updateUserList(onlineUsers))
     })
