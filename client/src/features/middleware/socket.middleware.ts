@@ -3,7 +3,7 @@ import { io } from "socket.io-client"
 import { sendMessage, receiveMessage } from "../messages/messageSlice"
 import { setUserName } from "../user/userSlice"
 
-export const createMySocketMiddleware = () => {
+export const createSocketMiddleware = () => {
   return (storeAPI: any) => {
     let socket = io()
 
