@@ -37,17 +37,17 @@ function MsgClientInputComponent({ userName, sendMessageHelper }: AppProps) {
     <div className="bg-gray-300">
       <form
         onSubmit={handleSubmit}
-        className="h-full grid grid-cols-12 items-center justify-around"
+        className="h-full grid md:grid-rows-1 grid-cols-12 items-center justify-around"
       >
         <input
-          className="col-start-1 col-end-3 px-3 text-gray-700 bg-gray-300 focus:outline-none resize-none"
+          className="text-sm md:text-2xl col-start-1 col-end-13 md:col-start-1 md:col-end-3 px-3 text-gray-700 bg-gray-300 focus:outline-none resize-none"
           name="user-name"
           autoComplete="off"
           value={displayName}
           type="text"
           onChange={handleNameChange}
         />
-        <div className="col-start-3 col-end-13 ml-2 flex">
+        <div className="col-start-1 md:col-start-3 col-end-13 ml-2 flex">
           <input
             className="flex-grow min-w-0 my-3 px-3 py-1.5 rounded-xl bg-gray-200 focus:outline-none resize-none"
             name="user-input"
