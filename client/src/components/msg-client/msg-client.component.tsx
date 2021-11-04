@@ -63,20 +63,22 @@ function MsgClientComponent() {
   return (
     <div className="flex flex-col col-start-1 col-end-13 h-full overflow-hidden md:col-start-3 md:col-end-11">
       <div
-        className="h-full grid grid-cols-12 overflow-y-scroll"
+        className="h-full flex flex-col md:grid md:grid-cols-12 overflow-hidden"
         ref={scrollSection}
       >
-        <div className="bg-gray-400 col-start-1 col-end-3">
+        <div className="bg-gray-400 md:col-start-1 md:col-end-3">
           <MsgClientUserListComponent userList={userList} />
         </div>
-        <div className="scroll bg-gray-300 flex flex-col justify-end col-start-3 col-end-13">
-          {messages.map((message, index) => (
-            <MsgClientItemComponent
-              key={message.sentAt}
-              message={message}
-              messageTimeStamp={messageTimeStamps[index]}
-            />
-          ))}
+        <div className="scroll flex-grow md:h-auto bg-gray-300 flex flex-col-reverse md:col-start-3 md:col-end-13 overflow-y-scroll">
+          <div>
+            {messages.map((message, index) => (
+              <MsgClientItemComponent
+                key={message.sentAt}
+                message={message}
+                messageTimeStamp={messageTimeStamps[index]}
+              />
+            ))}
+          </div>
         </div>
       </div>
       <MsgClientInputComponent
