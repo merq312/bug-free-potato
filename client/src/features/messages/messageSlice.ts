@@ -13,7 +13,7 @@ export interface MessageState {
 
 const initialState: MessageState = {
   messages: [
-    { content: "hello world", userName: "guest", sentAt: "1635830205267" },
+    { content: "hello world", userName: "Guest", sentAt: "1635830205267" },
   ],
 }
 

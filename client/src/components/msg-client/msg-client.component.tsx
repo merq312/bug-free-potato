@@ -1,14 +1,16 @@
-import { createRef, RefObject, useEffect, useState } from "react"
 import TimeAgo from "javascript-time-ago"
 import en from "javascript-time-ago/locale/en.json"
-import MsgClientInputComponent from "../msg-client-input/msg-client-input.component"
-import MsgClientItemComponent from "../msg-client-item/msg-client-item.component"
-import { useAppSelector, useAppDispatch } from "../../app/hooks"
+import { createRef, RefObject, useEffect, useState } from "react"
+import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import {
   selectMessages,
   sendMessage,
 } from "../../features/messages/messageSlice"
-import { selectuserName, selectUserList } from "../../features/user/userSlice"
+import { selectRooms } from "../../features/rooms/roomSlice"
+import { selectUserList, selectuserName } from "../../features/user/userSlice"
+import MsgClientInputComponent from "../msg-client-input/msg-client-input.component"
+import MsgClientItemComponent from "../msg-client-item/msg-client-item.component"
+import MsgClientTabComponent from "../msg-client-tab/msg-client-tab.component"
 import MsgClientUserListComponent from "../msg-client-user-list/msg-client-user-list.component"
 
 TimeAgo.addDefaultLocale(en)
@@ -18,8 +20,12 @@ function MsgClientComponent() {
   const messages = useAppSelector(selectMessages)
   const userName = useAppSelector(selectuserName)
   const userList = useAppSelector(selectUserList)
+  const rooms = useAppSelector(selectRooms)
   const dispatch = useAppDispatch()
+
   const scrollSection: RefObject<HTMLDivElement> = createRef()
+
+  const tabs = Object.keys(rooms)
 
   // Scroll to bottom whenever a new message is added/received
   useEffect(() => {
@@ -63,11 +69,16 @@ function MsgClientComponent() {
   return (
     <div className="flex flex-col col-start-1 col-end-13 h-full overflow-hidden md:col-start-3 md:col-end-11">
       <div
-        className="h-full flex flex-col md:grid md:grid-cols-12 overflow-hidden"
+        className="h-full flex flex-col grid-rows-tabs md:grid md:grid-cols-12 overflow-hidden"
         ref={scrollSection}
       >
-        <div className="bg-gray-400 md:col-start-1 md:col-end-3">
+        <div className="bg-gray-400 row-span-full md:col-start-1 md:col-end-3">
           <MsgClientUserListComponent userList={userList} />
+        </div>
+        <div className="flex bg-gray-300 text-gray-800 text-base md:text-xl px-2 py-1 md:col-start-3 md:col-end-13">
+          {tabs.map((tab) => (
+            <MsgClientTabComponent tabName={tab} />
+          ))}
         </div>
         <div className="scroll flex-grow md:h-auto bg-gray-300 flex flex-col-reverse md:col-start-3 md:col-end-13 overflow-y-scroll">
           <div>
