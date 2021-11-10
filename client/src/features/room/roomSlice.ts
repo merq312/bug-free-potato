@@ -2,51 +2,39 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit"
 import {RootState} from "../../app/store"
 import messageReducer, {Message, receiveMessage, sendMessage} from "../message/messageSlice"
 
-export interface MessageWithRoomId extends Message {
-  roomId: string
+export interface MessageSendPacket extends Message {
+  userId: string
+  roomName: string
+}
+
+export interface MessageReceivePacket extends Message {
+  roomName: string
 }
 
 const initialState: Record<string, Array<Message>> = {
-  Global: [
-    {
-      content: "hello world",
-      userName: "Guest",
-      sentAt: "1635830205267",
-    },
-  ],
-  Somebody: [
-    {
-      content: "hello",
-      userName: "Somebody",
-      sentAt: "1635830212312",
-    },
-  ],
+  Global: [],
 }
 
 export const roomSlice = createSlice({
   name: "rooms",
   initialState,
   reducers: {
-    // Send message without using message reducer
-    // sendMessage: (state, action: PayloadAction<MessageWithRoomId>) => ({
-    //     [action.payload.roomId]: state[action.payload.roomId].concat({
-    //       content: action.payload.content,
-    //       sentAt: action.payload.sentAt,
-    //       userName: action.payload.userName
-    //     })
-    //   }
-    // ),
-    openRoom: (state, action: PayloadAction<string>) => ({
-      ...state,
-      [action.payload]: []
-    }),
+    openRoom: (state, action: PayloadAction<string>) => {
+      if (!Object.keys(state).find(room => room === action.payload)) {
+        return {
+          ...state,
+          [action.payload]: []
+        }
+      }
+    },
     closeRoom: (state, action: PayloadAction<string>) => {
       delete state[action.payload]
     },
-    sendMessageToRoom: (state, action: PayloadAction<MessageWithRoomId>) => ({
-        [action.payload.roomId]:
+    sendMessageToRoom: (state, action: PayloadAction<MessageSendPacket>) => ({
+        ...state,
+        [action.payload.roomName]:
           messageReducer(
-            state[action.payload.roomId],
+            state[action.payload.roomName],
             sendMessage({
                 content: action.payload.content,
                 sentAt: action.payload.sentAt,
@@ -55,10 +43,11 @@ export const roomSlice = createSlice({
             ))
       }
     ),
-    receiveMessageFromRoom: (state, action: PayloadAction<MessageWithRoomId>) => ({
-        [action.payload.roomId]:
+    receiveMessageFromRoom: (state, action: PayloadAction<MessageReceivePacket>) => ({
+        ...state,
+        [action.payload.roomName]:
           messageReducer(
-            state[action.payload.roomId],
+            state[action.payload.roomName],
             receiveMessage({
                 content: action.payload.content,
                 sentAt: action.payload.sentAt,
@@ -72,6 +61,8 @@ export const roomSlice = createSlice({
 
 export const {openRoom, closeRoom, sendMessageToRoom, receiveMessageFromRoom} = roomSlice.actions
 
-export const selectRooms = (state: RootState) => state.rooms
+export const selectTabs = (state: RootState) => Object.keys(state.rooms)
+
+export const selectMessages = (roomName: string) => (state: RootState) => state.rooms[roomName]
 
 export default roomSlice.reducer

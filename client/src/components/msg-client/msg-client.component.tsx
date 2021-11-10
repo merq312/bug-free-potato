@@ -1,13 +1,9 @@
 import TimeAgo from "javascript-time-ago"
 import en from "javascript-time-ago/locale/en.json"
-import { createRef, RefObject, useEffect, useState } from "react"
-import { useAppDispatch, useAppSelector } from "../../app/hooks"
-import {
-  selectMessages,
-  sendMessage,
-} from "../../features/message/messageSlice"
-import { selectRooms } from "../../features/room/roomSlice"
-import { selectUserList, selectUserName } from "../../features/user/userSlice"
+import {createRef, RefObject, useEffect, useState} from "react"
+import {useAppDispatch, useAppSelector} from "../../app/hooks"
+import {selectTabs, selectMessages, sendMessageToRoom} from "../../features/room/roomSlice"
+import {selectUserId, selectUserList, selectUserName} from "../../features/user/userSlice"
 import MsgClientInputComponent from "../msg-client-input/msg-client-input.component"
 import MsgClientItemComponent from "../msg-client-item/msg-client-item.component"
 import MsgClientTabComponent from "../msg-client-tab/msg-client-tab.component"
@@ -17,32 +13,18 @@ TimeAgo.addDefaultLocale(en)
 const timeAgo = new TimeAgo("en-US")
 
 function MsgClientComponent() {
-  const messages = useAppSelector(selectMessages)
-  const userName = useAppSelector(selectUserName)
-  const userList = useAppSelector(selectUserList)
-  const rooms = useAppSelector(selectRooms)
   const dispatch = useAppDispatch()
 
+  const userName = useAppSelector(selectUserName)
+  const userId = useAppSelector(selectUserId)
+  const userList = useAppSelector(selectUserList)
+
+  const tabs = useAppSelector(selectTabs)
+  const [currentTab, setCurrentTab] = useState("Global")
+
+  const messages = useAppSelector(selectMessages(currentTab))
+
   const scrollSection: RefObject<HTMLDivElement> = createRef()
-
-  const [tabs, setTabs] = useState(Object.keys(rooms).map(roomId => ({
-    name: roomId,
-    current: roomId === "Global"
-  })))
-
-  useEffect(() => {
-    setTabs(Object.keys(rooms).map(roomId => ({
-      name: roomId,
-      current: roomId === "Global"
-    })))
-  }, [rooms])
-
-  const changeTab = (tabName: string) => {
-    setTabs(tabs.map(tab => {
-      tab.name === tabName ? tab.current = true : tab.current = false
-      return tab
-    }))
-  }
 
   // Scroll to bottom whenever a new message is added/received
   useEffect(() => {
@@ -74,9 +56,11 @@ function MsgClientComponent() {
   // Wrapper that is passed down into MsgClientInputComponent
   const sendMessageHelper = (messageContent: string) => {
     dispatch(
-      sendMessage({
-        content: messageContent,
+      sendMessageToRoom({
+        userId: userId,
         userName: userName,
+        content: messageContent,
+        roomName: currentTab,
         sentAt: new Date().getTime().toString(),
       })
     )
@@ -89,14 +73,20 @@ function MsgClientComponent() {
         ref={scrollSection}
       >
         <div className="bg-gray-400 row-span-full md:col-start-1 md:col-end-3">
-          <MsgClientUserListComponent userList={userList} />
+          <MsgClientUserListComponent userList={userList}/>
         </div>
         <div className="flex bg-gray-300 text-gray-800 text-base md:text-xl px-2 py-1 md:col-start-3 md:col-end-13">
           {tabs.map((tab) => (
-            <MsgClientTabComponent key={tab.name} tabName={tab.name} currentTab={tab.current} changeTab={changeTab} />
+            <MsgClientTabComponent
+              key={tab} tabName={tab}
+              currentTab={currentTab === tab}
+              changeTab={(tabName: string) => {
+                setCurrentTab(tabName)
+              }}/>
           ))}
         </div>
-        <div className="scroll flex-grow md:h-auto bg-gray-300 flex flex-col-reverse md:col-start-3 md:col-end-13 overflow-y-scroll">
+        <div
+          className="scroll flex-grow md:h-auto bg-gray-300 flex flex-col-reverse md:col-start-3 md:col-end-13 overflow-y-scroll">
           <div>
             {messages.map((message, index) => (
               <MsgClientItemComponent

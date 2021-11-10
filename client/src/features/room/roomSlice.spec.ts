@@ -1,11 +1,11 @@
-import roomReducer, {MessageWithRoomId, sendMessageToRoom} from "./roomSlice"
+import roomReducer, {MessageSendPacket, sendMessageToRoom} from "./roomSlice"
 
 describe("room reducer", () => {
-  const testMessage: MessageWithRoomId = {
+  const testMessage: MessageSendPacket = {
     content: "hello jest",
     userName: "Tester",
     sentAt: "1635872272682",
-    roomId: "Global",
+    roomName: "Global",
   }
 
   test("should handle initial state", () => {

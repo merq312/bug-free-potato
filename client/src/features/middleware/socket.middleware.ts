@@ -1,19 +1,20 @@
 import { AnyAction } from "redux"
 import { io } from "socket.io-client"
-import { sendMessage, receiveMessage } from "../message/messageSlice"
-import { setUserName, updateUserList } from "../user/userSlice"
+import {setUserId, setUserName, updateUserList} from "../user/userSlice"
+import {receiveMessageFromRoom, sendMessageToRoom} from "../room/roomSlice";
 
 export const createSocketMiddleware = () => {
   return (storeAPI: any) => {
     let socket = io()
 
     // Receiving a message
-    socket.on("chat message", (userName, messageContent) => {
+    socket.on("chat message", (userName, messageContent, roomName) => {
       storeAPI.dispatch(
-        receiveMessage({
+        receiveMessageFromRoom({
           content: messageContent,
           userName: userName,
           sentAt: new Date().getTime().toString(),
+          roomName: roomName
         })
       )
     })
@@ -24,17 +25,19 @@ export const createSocketMiddleware = () => {
     })
 
     // Receive guest name on connect
-    socket.on("guest name", (guestName) => {
+    socket.on("guest name and id", (guestName, userId) => {
       storeAPI.dispatch(setUserName(guestName))
+      storeAPI.dispatch(setUserId(userId))
     })
 
     return (next: any) => (action: AnyAction) => {
       // Sending a message
-      if (sendMessage.match(action)) {
+      if (sendMessageToRoom.match(action)) {
         socket.emit(
           "chat message",
-          action.payload.userName,
-          action.payload.content
+          action.payload.userId,
+          action.payload.content,
+          action.payload.roomName
         )
       }
 
