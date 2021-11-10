@@ -8,7 +8,7 @@ export interface UserState {
 
 const initialState: UserState = {
   self: "Guest",
-  userList: ["Somebody"],
+  userList: ["Somebody", "Bob"],
 }
 
 export const userSlice = createSlice({

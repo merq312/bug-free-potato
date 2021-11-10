@@ -36,6 +36,13 @@ export const roomSlice = createSlice({
     //     })
     //   }
     // ),
+    openRoom: (state, action: PayloadAction<string>) => ({
+      ...state,
+      [action.payload]: []
+    }),
+    closeRoom: (state, action: PayloadAction<string>) => {
+      delete state[action.payload]
+    },
     sendMessageToRoom: (state, action: PayloadAction<MessageWithRoomId>) => ({
         [action.payload.roomId]:
           messageReducer(
@@ -63,7 +70,7 @@ export const roomSlice = createSlice({
   },
 })
 
-export const {sendMessageToRoom, receiveMessageFromRoom} = roomSlice.actions
+export const {openRoom, closeRoom, sendMessageToRoom, receiveMessageFromRoom} = roomSlice.actions
 
 export const selectRooms = (state: RootState) => state.rooms
 
