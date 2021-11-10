@@ -5,9 +5,9 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import {
   selectMessages,
   sendMessage,
-} from "../../features/messages/messageSlice"
-import { selectRooms } from "../../features/rooms/roomSlice"
-import { selectUserList, selectuserName } from "../../features/user/userSlice"
+} from "../../features/message/messageSlice"
+import { selectRooms } from "../../features/room/roomSlice"
+import { selectUserList, selectUserName } from "../../features/user/userSlice"
 import MsgClientInputComponent from "../msg-client-input/msg-client-input.component"
 import MsgClientItemComponent from "../msg-client-item/msg-client-item.component"
 import MsgClientTabComponent from "../msg-client-tab/msg-client-tab.component"
@@ -18,7 +18,7 @@ const timeAgo = new TimeAgo("en-US")
 
 function MsgClientComponent() {
   const messages = useAppSelector(selectMessages)
-  const userName = useAppSelector(selectuserName)
+  const userName = useAppSelector(selectUserName)
   const userList = useAppSelector(selectUserList)
   const rooms = useAppSelector(selectRooms)
   const dispatch = useAppDispatch()
@@ -29,7 +29,6 @@ function MsgClientComponent() {
 
   // Scroll to bottom whenever a new message is added/received
   useEffect(() => {
-    console.log("trigger")
     if (scrollSection.current) {
       scrollSection.current.scrollTop = scrollSection.current.scrollHeight
     }

@@ -8,7 +8,7 @@ export interface UserState {
 
 const initialState: UserState = {
   self: "Guest",
-  userList: [],
+  userList: ["Somebody"],
 }
 
 export const userSlice = createSlice({
@@ -26,7 +26,7 @@ export const userSlice = createSlice({
 
 export const { setUserName, updateUserList } = userSlice.actions
 
-export const selectuserName = (state: RootState) => state.user.self
+export const selectUserName = (state: RootState) => state.user.self
 export const selectUserList = (state: RootState) => state.user.userList
 
 export default userSlice.reducer

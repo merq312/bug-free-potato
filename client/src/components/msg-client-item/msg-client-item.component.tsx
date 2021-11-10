@@ -1,4 +1,4 @@
-import { Message } from "../../features/messages/messageSlice"
+import { Message } from "../../features/message/messageSlice"
 
 type AppProps = {
   message: Message

@@ -1,6 +1,6 @@
 import { AnyAction } from "redux"
 import { io } from "socket.io-client"
-import { sendMessage, receiveMessage } from "../messages/messageSlice"
+import { sendMessage, receiveMessage } from "../message/messageSlice"
 import { setUserName, updateUserList } from "../user/userSlice"
 
 export const createSocketMiddleware = () => {
@@ -18,7 +18,7 @@ export const createSocketMiddleware = () => {
       )
     })
 
-    // Recieve list of online users (whenever it changes)
+    // Receive list of online users (whenever it changes)
     socket.on("user list", (onlineUsers) => {
       storeAPI.dispatch(updateUserList(onlineUsers))
     })

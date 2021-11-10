@@ -14,7 +14,7 @@ describe("message reducer", () => {
     )
   })
 
-  test("should accept new messages", () => {
+  test("should accept new message", () => {
     const actual = messageReducer(undefined, sendMessage(testMessage))
     expect(actual[1].content).toEqual("hello jest")
   })
