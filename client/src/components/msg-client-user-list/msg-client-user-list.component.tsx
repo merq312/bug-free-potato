@@ -10,7 +10,7 @@ function MsgClientUserListComponent({ userList }: AppProps) {
   return (
     <>
       {userList.map((userName) => (
-        <div onClick={() => dispatch(openRoom(userName))} className="text-gray-800 inline-block md:block text-base md:text-xl px-2 py-1 cursor-pointer">
+        <div key={userName} onClick={() => dispatch(openRoom(userName))} className="text-gray-800 inline-block md:block text-base md:text-xl px-2 py-1 cursor-pointer">
           {userName}
         </div>
       ))}

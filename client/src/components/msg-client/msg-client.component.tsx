@@ -25,7 +25,24 @@ function MsgClientComponent() {
 
   const scrollSection: RefObject<HTMLDivElement> = createRef()
 
-  const tabs = Object.keys(rooms)
+  const [tabs, setTabs] = useState(Object.keys(rooms).map(roomId => ({
+    name: roomId,
+    current: roomId === "Global"
+  })))
+
+  useEffect(() => {
+    setTabs(Object.keys(rooms).map(roomId => ({
+      name: roomId,
+      current: roomId === "Global"
+    })))
+  }, [rooms])
+
+  const changeTab = (tabName: string) => {
+    setTabs(tabs.map(tab => {
+      tab.name === tabName ? tab.current = true : tab.current = false
+      return tab
+    }))
+  }
 
   // Scroll to bottom whenever a new message is added/received
   useEffect(() => {
@@ -76,7 +93,7 @@ function MsgClientComponent() {
         </div>
         <div className="flex bg-gray-300 text-gray-800 text-base md:text-xl px-2 py-1 md:col-start-3 md:col-end-13">
           {tabs.map((tab) => (
-            <MsgClientTabComponent tabName={tab} />
+            <MsgClientTabComponent key={tab.name} tabName={tab.name} currentTab={tab.current} changeTab={changeTab} />
           ))}
         </div>
         <div className="scroll flex-grow md:h-auto bg-gray-300 flex flex-col-reverse md:col-start-3 md:col-end-13 overflow-y-scroll">
