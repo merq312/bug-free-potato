@@ -60,7 +60,7 @@ function MsgClientComponent() {
         socketId: socketId,
         userName: userName,
         content: messageContent,
-        roomName: currentTab,
+        roomId: currentTab,
         sentAt: new Date().getTime().toString(),
       })
     )
@@ -76,12 +76,13 @@ function MsgClientComponent() {
           <MsgClientUserListComponent userList={userList}/>
         </div>
         <div className="flex bg-gray-300 text-gray-800 text-base md:text-xl px-2 py-1 md:col-start-3 md:col-end-13">
-          {tabs.map((tab) => (
+          {tabs.map((tabId) => (
             <MsgClientTabComponent
-              key={tab} tabName={tab}
-              currentTab={currentTab === tab}
-              changeTab={(tabName: string) => {
-                setCurrentTab(tabName)
+              key={tabId}
+              tabId = {tabId}
+              currentTab={currentTab === tabId}
+              changeTab={(tabId: string) => {
+                setCurrentTab(tabId)
               }}/>
           ))}
         </div>

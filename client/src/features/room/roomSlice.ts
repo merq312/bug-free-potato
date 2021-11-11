@@ -4,11 +4,11 @@ import messageReducer, {Message, receiveMessage, sendMessage} from "../message/m
 
 export interface MessageSendPacket extends Message {
   socketId: string
-  roomName: string
+  roomId: string
 }
 
 export interface MessageReceivePacket extends Message {
-  roomName: string
+  roomId: string
 }
 
 const initialState: Record<string, Array<Message>> = {
@@ -32,9 +32,9 @@ export const roomSlice = createSlice({
     },
     sendMessageToRoom: (state, action: PayloadAction<MessageSendPacket>) => ({
         ...state,
-        [action.payload.roomName]:
+        [action.payload.roomId]:
           messageReducer(
-            state[action.payload.roomName],
+            state[action.payload.roomId],
             sendMessage({
                 content: action.payload.content,
                 sentAt: action.payload.sentAt,
@@ -45,9 +45,9 @@ export const roomSlice = createSlice({
     ),
     receiveMessageFromRoom: (state, action: PayloadAction<MessageReceivePacket>) => ({
         ...state,
-        [action.payload.roomName]:
+        [action.payload.roomId]:
           messageReducer(
-            state[action.payload.roomName],
+            state[action.payload.roomId],
             receiveMessage({
                 content: action.payload.content,
                 sentAt: action.payload.sentAt,

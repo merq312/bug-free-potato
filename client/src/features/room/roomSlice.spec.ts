@@ -5,7 +5,7 @@ describe("room reducer", () => {
     content: "hello jest",
     userName: "Tester",
     sentAt: "1635872272682",
-    roomName: "Global",
+    roomId: "Global",
   }
 
   test("should handle initial state", () => {
