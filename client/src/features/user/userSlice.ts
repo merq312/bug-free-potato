@@ -1,18 +1,23 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit"
 import {RootState} from "../../app/store"
 
+export interface otherUser {
+  uuid: string,
+  userName: string,
+}
+
 export interface UserState {
   self: {
     socketId: string,
-    name: string,
+    userName: string,
   }
-  userList: Array<string>
+  userList: Array<otherUser>
 }
 
 const initialState: UserState = {
   self: {
     socketId: "",
-    name: "Guest"
+    userName: "Guest"
   },
   userList: [],
 }
@@ -25,9 +30,9 @@ export const userSlice = createSlice({
       state.self.socketId = action.payload
     },
     setUserName: (state, action: PayloadAction<string>) => {
-      state.self.name = action.payload
+      state.self.userName = action.payload
     },
-    updateUserList: (state, action: PayloadAction<Array<string>>) => {
+    updateUserList: (state, action: PayloadAction<Array<otherUser>>) => {
       state.userList = action.payload
     },
   },
@@ -35,7 +40,7 @@ export const userSlice = createSlice({
 
 export const {setSocketId, setUserName, updateUserList} = userSlice.actions
 
-export const selectUserName = (state: RootState) => state.user.self.name
+export const selectUserName = (state: RootState) => state.user.self.userName
 export const selectSocketId = (state: RootState) => state.user.self.socketId
 export const selectUserList = (state: RootState) => state.user.userList
 

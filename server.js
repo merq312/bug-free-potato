@@ -1,5 +1,5 @@
 const path = require("path")
-// const crypto = require("crypto").webcrypto;
+const { v4: uuidv4 } = require('uuid');
 const express = require("express")
 const app = express()
 const http = require("http")
@@ -11,7 +11,10 @@ const onlineUsers = {}
 
 const addUser = (socketId) => {
   return {
-    [socketId]: "Guest" + Math.floor(Math.random() * 10000),
+    [socketId]: {
+      userName: "Guest" + Math.floor(Math.random() * 10000),
+      uuid: uuidv4()
+    },
   }
 }
 
@@ -34,7 +37,7 @@ io.on("connection", (socket) => {
   Object.assign(onlineUsers, addUser(socket.id))
 
   // SEND A RANDOM NAME AND USER-ID TO NEW USER (THE USER-ID IS A SECRET)
-  socket.emit("guest name and id", onlineUsers[socket.id], socket.id)
+  socket.emit("guest name and id", onlineUsers[socket.id].userName, socket.id)
 
   // SEND LIST OF OTHER USERS (NAMES ONLY)
   io.emit("user list", Object.values(onlineUsers))
@@ -42,15 +45,15 @@ io.on("connection", (socket) => {
   socket.on("chat message", (socketId, messageContent, roomName) => {
     // IF THE ROOM-NAME IS NOT "GLOBAL", FIND THE ROOM-ID FROM THE ROOM-NAME
     if (roomName !== "Global") {
-      const roomId = Object.keys(onlineUsers).find(key => onlineUsers[key] === roomName);
-      socket.to(roomId).emit("chat message", onlineUsers[socketId], messageContent, onlineUsers[socketId])
+      const roomId = Object.keys(onlineUsers).find(key => onlineUsers[key].userName === roomName);
+      socket.to(roomId).emit("chat message", onlineUsers[socketId].userName, messageContent, onlineUsers[socketId].userName)
     } else {
-      socket.to(roomName).emit("chat message", onlineUsers[socketId], messageContent, roomName)
+      socket.to(roomName).emit("chat message", onlineUsers[socketId].userName, messageContent, roomName)
     }
   })
 
   socket.on("set user name", (userName) => {
-    onlineUsers[socket.id] = userName
+    onlineUsers[socket.id].userName = userName
     io.emit("user list", Object.values(onlineUsers))
   })
 
