@@ -36,10 +36,10 @@ io.on("connection", (socket) => {
   // ADD NEW USER TO SERVER-SIDE USER-LIST
   Object.assign(onlineUsers, addUser(socket.id))
 
-  // SEND A RANDOM NAME AND USER-ID TO NEW USER (THE USER-ID IS A SECRET)
+  // SEND A RANDOM GENERATED NAME, UNIQUE-USER-ID AND SOCKET-ID
   socket.emit("user info", onlineUsers[socket.id], socket.id)
 
-  // SEND LIST OF OTHER USERS (NAMES ONLY)
+  // SEND LIST OF OTHER USERS (USERNAME AND UUID ONLY, SOCKET-ID IS HIDDEN)
   io.emit("user list", Object.values(onlineUsers))
 
   socket.on("chat message", (socketId, messageContent, roomName) => {

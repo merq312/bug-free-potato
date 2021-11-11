@@ -4,10 +4,10 @@ import {createRef, RefObject, useEffect, useState} from "react"
 import {useAppDispatch, useAppSelector} from "../../app/hooks"
 import {selectTabs, selectMessages, sendMessageToRoom} from "../../features/room/roomSlice"
 import {selectSocketId, selectUserList, selectUserName} from "../../features/user/userSlice"
-import MsgClientInputComponent from "../msg-client-input/msg-client-input.component"
-import MsgClientItemComponent from "../msg-client-item/msg-client-item.component"
-import MsgClientTabComponent from "../msg-client-tab/msg-client-tab.component"
-import MsgClientUserListComponent from "../msg-client-user-list/msg-client-user-list.component"
+import MsgClientInputComponent from "../msg-client-input/Msg-client-input.component"
+import MsgClientItemComponent from "../msg-client-item/Msg-client-item.component"
+import MsgClientTabComponent from "../msg-client-tab/Msg-client-tab.component"
+import MsgClientUserListComponent from "../msg-client-user-list/Msg-client-user-list.component"
 
 TimeAgo.addDefaultLocale(en)
 const timeAgo = new TimeAgo("en-US")
