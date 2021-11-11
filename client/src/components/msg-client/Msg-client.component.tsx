@@ -73,7 +73,7 @@ function MsgClientComponent() {
         ref={scrollSection}
       >
         <div className="bg-gray-400 row-span-full md:col-start-1 md:col-end-3">
-          <MsgClientUserListComponent userList={userList}/>
+          <MsgClientUserListComponent self={userName} userList={userList}/>
         </div>
         <div className="flex bg-gray-300 text-gray-800 text-base md:text-xl px-2 py-1 md:col-start-3 md:col-end-13">
           {tabs.map((tabId) => (
