@@ -9,9 +9,9 @@ const io = new Server(server)
 
 const onlineUsers = {}
 
-const addUser = (id) => {
+const addUser = (socketId) => {
   return {
-    [id]: "Guest" + Math.floor(Math.random() * 10000),
+    [socketId]: "Guest" + Math.floor(Math.random() * 10000),
   }
 }
 
@@ -39,13 +39,13 @@ io.on("connection", (socket) => {
   // SEND LIST OF OTHER USERS (NAMES ONLY)
   io.emit("user list", Object.values(onlineUsers))
 
-  socket.on("chat message", (userId, messageContent, roomName) => {
+  socket.on("chat message", (socketId, messageContent, roomName) => {
     // IF THE ROOM-NAME IS NOT "GLOBAL", FIND THE ROOM-ID FROM THE ROOM-NAME
     if (roomName !== "Global") {
       const roomId = Object.keys(onlineUsers).find(key => onlineUsers[key] === roomName);
-      socket.to(roomId).emit("chat message", onlineUsers[userId], messageContent, onlineUsers[userId])
+      socket.to(roomId).emit("chat message", onlineUsers[socketId], messageContent, onlineUsers[socketId])
     } else {
-      socket.to(roomName).emit("chat message", onlineUsers[userId], messageContent, roomName)
+      socket.to(roomName).emit("chat message", onlineUsers[socketId], messageContent, roomName)
     }
   })
 

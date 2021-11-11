@@ -1,6 +1,6 @@
 import { AnyAction } from "redux"
 import { io } from "socket.io-client"
-import {setUserId, setUserName, updateUserList} from "../user/userSlice"
+import {setSocketId, setUserName, updateUserList} from "../user/userSlice"
 import {receiveMessageFromRoom, sendMessageToRoom} from "../room/roomSlice";
 
 export const createSocketMiddleware = () => {
@@ -25,9 +25,9 @@ export const createSocketMiddleware = () => {
     })
 
     // Receive guest name on connect
-    socket.on("guest name and id", (guestName, userId) => {
+    socket.on("guest name and id", (guestName, socketId) => {
       storeAPI.dispatch(setUserName(guestName))
-      storeAPI.dispatch(setUserId(userId))
+      storeAPI.dispatch(setSocketId(socketId))
     })
 
     return (next: any) => (action: AnyAction) => {
@@ -35,7 +35,7 @@ export const createSocketMiddleware = () => {
       if (sendMessageToRoom.match(action)) {
         socket.emit(
           "chat message",
-          action.payload.userId,
+          action.payload.socketId,
           action.payload.content,
           action.payload.roomName
         )

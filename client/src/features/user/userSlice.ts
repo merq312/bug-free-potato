@@ -3,7 +3,7 @@ import {RootState} from "../../app/store"
 
 export interface UserState {
   self: {
-    id: string,
+    socketId: string,
     name: string,
   }
   userList: Array<string>
@@ -11,7 +11,7 @@ export interface UserState {
 
 const initialState: UserState = {
   self: {
-    id: "",
+    socketId: "",
     name: "Guest"
   },
   userList: [],
@@ -21,8 +21,8 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setUserId: (state, action: PayloadAction<string>) => {
-      state.self.id = action.payload
+    setSocketId: (state, action: PayloadAction<string>) => {
+      state.self.socketId = action.payload
     },
     setUserName: (state, action: PayloadAction<string>) => {
       state.self.name = action.payload
@@ -33,10 +33,10 @@ export const userSlice = createSlice({
   },
 })
 
-export const {setUserId, setUserName, updateUserList} = userSlice.actions
+export const {setSocketId, setUserName, updateUserList} = userSlice.actions
 
 export const selectUserName = (state: RootState) => state.user.self.name
-export const selectUserId = (state: RootState) => state.user.self.id
+export const selectSocketId = (state: RootState) => state.user.self.socketId
 export const selectUserList = (state: RootState) => state.user.userList
 
 export default userSlice.reducer

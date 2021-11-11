@@ -3,7 +3,7 @@ import {RootState} from "../../app/store"
 import messageReducer, {Message, receiveMessage, sendMessage} from "../message/messageSlice"
 
 export interface MessageSendPacket extends Message {
-  userId: string
+  socketId: string
   roomName: string
 }
 

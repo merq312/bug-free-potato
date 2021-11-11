@@ -3,7 +3,7 @@ import en from "javascript-time-ago/locale/en.json"
 import {createRef, RefObject, useEffect, useState} from "react"
 import {useAppDispatch, useAppSelector} from "../../app/hooks"
 import {selectTabs, selectMessages, sendMessageToRoom} from "../../features/room/roomSlice"
-import {selectUserId, selectUserList, selectUserName} from "../../features/user/userSlice"
+import {selectSocketId, selectUserList, selectUserName} from "../../features/user/userSlice"
 import MsgClientInputComponent from "../msg-client-input/msg-client-input.component"
 import MsgClientItemComponent from "../msg-client-item/msg-client-item.component"
 import MsgClientTabComponent from "../msg-client-tab/msg-client-tab.component"
@@ -16,7 +16,7 @@ function MsgClientComponent() {
   const dispatch = useAppDispatch()
 
   const userName = useAppSelector(selectUserName)
-  const userId = useAppSelector(selectUserId)
+  const socketId = useAppSelector(selectSocketId)
   const userList = useAppSelector(selectUserList)
 
   const tabs = useAppSelector(selectTabs)
@@ -57,7 +57,7 @@ function MsgClientComponent() {
   const sendMessageHelper = (messageContent: string) => {
     dispatch(
       sendMessageToRoom({
-        userId: userId,
+        socketId: socketId,
         userName: userName,
         content: messageContent,
         roomName: currentTab,
