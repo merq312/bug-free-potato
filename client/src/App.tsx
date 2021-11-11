@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom"
-import HomePage from "./pages/home/Home.page"
+import MsgClientPage from "./pages/msg-client/Msg-client.page";
 import HeaderComponent from "./components/header/Header.component"
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
       <main className="grid grid-cols-12 overflow-hidden h-full text-xl sm:text-2xl  bg-gray-700 ">
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={HomePage} />
+            <Route exact path="/" component={MsgClientPage} />
           </Switch>
         </BrowserRouter>
       </main>

@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit"
-import {RootState} from "../../app/store"
+import {RootState} from "../store"
 import messageReducer, {Message, receiveMessage, sendMessage} from "../message/messageSlice"
 
 export interface MessageSendPacket extends Message {

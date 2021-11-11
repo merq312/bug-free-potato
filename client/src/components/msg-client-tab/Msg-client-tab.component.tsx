@@ -1,4 +1,4 @@
-import {useAppSelector} from "../../app/hooks";
+import {useAppSelector} from "../../features/hooks";
 import {selectUserFromUuid} from "../../features/user/userSlice";
 
 type AppProps = {

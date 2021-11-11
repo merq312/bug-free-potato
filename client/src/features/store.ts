@@ -1,10 +1,10 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
 import { logger } from "redux-logger"
-import counterReducer from "../features/counter/counterSlice"
-import messageReducer from "../features/message/messageSlice"
-import userReducer from "../features/user/userSlice"
-import roomReducer from "../features/room/roomSlice"
-import { createSocketMiddleware } from "../features/middleware/socket.middleware"
+import counterReducer from "./counter/counterSlice"
+import messageReducer from "./message/messageSlice"
+import userReducer from "./user/userSlice"
+import roomReducer from "./room/roomSlice"
+import { createSocketMiddleware } from "./middleware/socket.middleware"
 
 export const store = configureStore({
   reducer: {

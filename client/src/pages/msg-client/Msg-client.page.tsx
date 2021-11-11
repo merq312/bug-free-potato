@@ -1,18 +1,18 @@
 import TimeAgo from "javascript-time-ago"
 import en from "javascript-time-ago/locale/en.json"
 import {createRef, RefObject, useEffect, useState} from "react"
-import {useAppDispatch, useAppSelector} from "../../app/hooks"
-import {selectTabs, selectMessages, sendMessageToRoom} from "../../features/room/roomSlice"
+import {useAppDispatch, useAppSelector} from "../../features/hooks"
+import {selectMessages, selectTabs, sendMessageToRoom} from "../../features/room/roomSlice"
 import {selectSocketId, selectUserList, selectUserName} from "../../features/user/userSlice"
-import MsgClientInputComponent from "../msg-client-input/Msg-client-input.component"
-import MsgClientItemComponent from "../msg-client-item/Msg-client-item.component"
-import MsgClientTabComponent from "../msg-client-tab/Msg-client-tab.component"
-import MsgClientUserListComponent from "../msg-client-user-list/Msg-client-user-list.component"
+import MsgClientInputComponent from "../../components/msg-client-input/Msg-client-input.component"
+import MsgClientItemComponent from "../../components/msg-client-item/Msg-client-item.component"
+import MsgClientTabComponent from "../../components/msg-client-tab/Msg-client-tab.component"
+import MsgClientUserListComponent from "../../components/msg-client-user-list/Msg-client-user-list.component"
 
 TimeAgo.addDefaultLocale(en)
 const timeAgo = new TimeAgo("en-US")
 
-function MsgClientComponent() {
+function MsgClientPage() {
   const dispatch = useAppDispatch()
 
   const userName = useAppSelector(selectUserName)
@@ -107,4 +107,4 @@ function MsgClientComponent() {
   )
 }
 
-export default MsgClientComponent
+export default MsgClientPage

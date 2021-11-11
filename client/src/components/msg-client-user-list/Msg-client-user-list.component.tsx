@@ -1,5 +1,5 @@
 import {openRoom} from "../../features/room/roomSlice";
-import {useAppDispatch} from "../../app/hooks";
+import {useAppDispatch} from "../../features/hooks";
 import {otherUser} from "../../features/user/userSlice";
 
 type AppProps = {

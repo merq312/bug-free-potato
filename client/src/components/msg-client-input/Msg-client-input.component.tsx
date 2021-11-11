@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react"
-import { useAppDispatch } from "../../app/hooks"
+import { useAppDispatch } from "../../features/hooks"
 import { setUserName } from "../../features/user/userSlice"
 
 type AppProps = {
