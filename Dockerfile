@@ -17,7 +17,7 @@ RUN cd client && npm install && cd ..
 # Bundle app source
 COPY . .
 
-# Build client
+# Build client and server
 RUN npm run build
 
 # Map port to docker daemon
