@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import {createSlice, PayloadAction} from "@reduxjs/toolkit"
 
 export interface Message {
   content: string
@@ -17,6 +17,6 @@ export const messageSlice = createSlice({
   },
 })
 
-export const { sendMessage, receiveMessage } = messageSlice.actions
+export const {sendMessage, receiveMessage} = messageSlice.actions
 
 export default messageSlice.reducer

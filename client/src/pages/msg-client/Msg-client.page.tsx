@@ -79,7 +79,7 @@ function MsgClientPage() {
           {tabs.map((tabId) => (
             <MsgClientTabComponent
               key={tabId}
-              tabId = {tabId}
+              tabId={tabId}
               currentTab={currentTab === tabId}
               changeTab={(tabId: string) => {
                 setCurrentTab(tabId)

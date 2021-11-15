@@ -1,5 +1,5 @@
-import { AnyAction } from "redux"
-import { io } from "socket.io-client"
+import {AnyAction} from "redux"
+import {io} from "socket.io-client"
 import {setSocketId, setUserId, setUserName, updateUserList} from "../user/userSlice"
 import {receiveMessageFromRoom, sendMessageToRoom} from "../room/roomSlice";
 

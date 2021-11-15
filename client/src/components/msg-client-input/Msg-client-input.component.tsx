@@ -1,13 +1,13 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react"
-import { useAppDispatch } from "../../features/hooks"
-import { setUserName } from "../../features/user/userSlice"
+import {ChangeEvent, FormEvent, useEffect, useState} from "react"
+import {useAppDispatch} from "../../features/hooks"
+import {setUserName} from "../../features/user/userSlice"
 
 type AppProps = {
   sendMessageHelper: (arg0: string) => void
   userName: string
 }
 
-function MsgClientInputComponent({ userName, sendMessageHelper }: AppProps) {
+function MsgClientInputComponent({userName, sendMessageHelper}: AppProps) {
   const [userInput, setUserInput] = useState("")
   const [displayName, setDisplayName] = useState(userName)
   const dispatch = useAppDispatch()

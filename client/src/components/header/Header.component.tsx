@@ -1,8 +1,8 @@
-import { useAuth0 } from "@auth0/auth0-react"
+import {useAuth0} from "@auth0/auth0-react"
 import HeaderButtonComponent from "../header-button/Header-button.component"
 
 function HeaderComponent() {
-  const { logout, loginWithRedirect, isAuthenticated, isLoading } = useAuth0()
+  const {logout, loginWithRedirect, isAuthenticated, isLoading} = useAuth0()
 
   return (
     <header className="bg-gray-700 flex items-center justify-between w-screen h-16 border-b-2 border-gray-200">
@@ -14,7 +14,7 @@ function HeaderComponent() {
       ) : isAuthenticated ? (
         <HeaderButtonComponent
           text="logout"
-          handleClick={() => logout({ returnTo: window.location.origin })}
+          handleClick={() => logout({returnTo: window.location.origin})}
         />
       ) : (
         <HeaderButtonComponent
