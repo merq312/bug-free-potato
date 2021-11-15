@@ -8,14 +8,12 @@ describe("message reducer", () => {
   }
 
   test("should handle initial state", () => {
-    expect(messageReducer(undefined, {type: "unknown"})).toEqual([
-        {content: "hello world", userName: "Guest", sentAt: "1635830205267"},
-      ]
+    expect(messageReducer(undefined, {type: "unknown"})).toEqual([]
     )
   })
 
   test("should accept new message", () => {
     const actual = messageReducer(undefined, sendMessage(testMessage))
-    expect(actual[1].content).toEqual("hello jest")
+    expect(actual[0].content).toEqual("hello jest")
   })
 })
