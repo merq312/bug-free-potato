@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Message Client renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col col-start-1 col-end-13 h-full overflow-hidden md:col-start-3 md:col-end-11"
+  >
+    <div
+      class="h-full flex flex-col grid-rows-tabs md:grid md:grid-cols-12 overflow-hidden"
+    >
+      <div
+        class="bg-gray-400 row-span-full md:col-start-1 md:col-end-3"
+      />
+      <div
+        class="flex bg-gray-300 text-gray-800 text-base md:text-xl px-2 py-1 md:col-start-3 md:col-end-13"
+      >
+        <div
+          class="px-4 border-r hover:underline border-gray-700 last:border-r-0 cursor-pointer underline"
+        >
+          Global
+        </div>
+      </div>
+      <div
+        class="scroll flex-grow md:h-auto bg-gray-300 flex flex-col-reverse md:col-start-3 md:col-end-13 overflow-y-scroll"
+      >
+        <div />
+      </div>
+    </div>
+    <div
+      class="bg-gray-300"
+    >
+      <form
+        class="h-full grid md:grid-rows-1 grid-cols-12 items-center justify-around"
+      >
+        <input
+          autocomplete="off"
+          class="text-sm md:text-2xl col-start-1 col-end-13 md:col-start-1 md:col-end-3 px-3 text-gray-700 bg-gray-300 focus:outline-none resize-none"
+          name="user-name"
+          type="text"
+          value="Guest"
+        />
+        <div
+          class="col-start-1 md:col-start-3 col-end-13 ml-2 flex"
+        >
+          <input
+            autocomplete="off"
+            class="flex-grow min-w-0 my-3 px-3 py-1.5 rounded-xl bg-gray-200 focus:outline-none resize-none"
+            name="user-input"
+            type="text"
+            value=""
+          />
+          <button
+            class="px-2 sm:px-4 text-gray-700 font-bold"
+            type="submit"
+          >
+            Send
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</DocumentFragment>
+`;
