@@ -1,7 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react"
-
-const buttonStyles =
-  " p-2 my-6 mx-2 text-sm sm:text-base text-black border-2 border-transparent rounded-xl bg-blue-200 shadow-md hover:bg-blue-300 transition duration-500 ease-in-out"
+import HeaderButtonComponent from "../header-button/Header-button.component"
 
 function HeaderComponent() {
   const { logout, loginWithRedirect, isAuthenticated, isLoading } = useAuth0()
@@ -14,16 +12,15 @@ function HeaderComponent() {
       {isLoading ? (
         <p className="text-gray-200 px-4">Loading...</p>
       ) : isAuthenticated ? (
-        <button
-          className={buttonStyles}
-          onClick={() => logout({ returnTo: window.location.origin })}
-        >
-          Log Out
-        </button>
+        <HeaderButtonComponent
+          text="logout"
+          handleClick={() => logout({ returnTo: window.location.origin })}
+        />
       ) : (
-        <button className={buttonStyles} onClick={() => loginWithRedirect()}>
-          Log In
-        </button>
+        <HeaderButtonComponent
+          text="login"
+          handleClick={() => loginWithRedirect()}
+        />
       )}
     </header>
   )
