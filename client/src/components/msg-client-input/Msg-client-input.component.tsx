@@ -46,6 +46,7 @@ function MsgClientInputComponent({userName, sendMessageHelper}: AppProps) {
           value={displayName}
           type="text"
           onChange={handleNameChange}
+          data-cy="input-username"
         />
         <div className="col-start-1 md:col-start-3 col-end-13 ml-2 flex">
           <input
@@ -55,10 +56,12 @@ function MsgClientInputComponent({userName, sendMessageHelper}: AppProps) {
             value={userInput}
             type="text"
             onChange={handleInputChange}
+            data-cy="input-message"
           />
           <button
             type="submit"
             className="px-2 sm:px-4 text-gray-700 font-bold"
+            data-cy="send-message"
           >
             Send
           </button>

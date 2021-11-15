@@ -18,7 +18,9 @@ function MsgClientItemComponent({message, messageTimeStamp}: AppProps) {
             {message.userName}
           </div>
         </div>
-        <div className="text-gray-700 text-right">{message.content}</div>
+        <div className="text-gray-700 text-right"
+             data-cy="messages"
+        >{message.content}</div>
       </div>
     </div>
   )
