@@ -13,12 +13,12 @@ function HeaderComponent() {
         <p className="text-gray-200 px-4">Loading...</p>
       ) : isAuthenticated ? (
         <HeaderButtonComponent
-          text="logout"
+          text="Logout"
           handleClick={() => logout({returnTo: window.location.origin})}
         />
       ) : (
         <HeaderButtonComponent
-          text="login"
+          text="Login"
           handleClick={() => loginWithRedirect()}
         />
       )}
