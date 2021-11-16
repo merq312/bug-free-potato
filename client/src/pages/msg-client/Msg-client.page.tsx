@@ -67,15 +67,15 @@ function MsgClientPage() {
   }
 
   return (
-    <div className="flex flex-col col-start-1 col-end-13 h-full overflow-hidden md:col-start-3 md:col-end-11">
+    <div className="flex flex-col col-start-1 col-end-13 h-full overflow-hidden lg:col-start-3 lg:col-end-11">
       <div
-        className="h-full flex flex-col grid-rows-tabs md:grid md:grid-cols-12 overflow-hidden"
+        className="h-full flex flex-col grid-rows-tabs lg:grid lg:grid-cols-12 overflow-hidden"
         ref={scrollSection}
       >
-        <div className="bg-gray-400 row-span-full md:col-start-1 md:col-end-3">
+        <div className="row-span-full lg:col-start-1 lg:col-end-3 border-b border-gray-400 lg:border-b-0">
           <MsgClientUserListComponent self={userName} userList={userList}/>
         </div>
-        <div className="flex bg-gray-300 text-gray-800 text-base md:text-xl px-2 py-1 md:col-start-3 md:col-end-13">
+        <div className="flex text-gray-800 text-base lg:text-xl lg:col-start-3 lg:col-end-13">
           {tabs.map((tabId) => (
             <MsgClientTabComponent
               key={tabId}
@@ -87,7 +87,7 @@ function MsgClientPage() {
           ))}
         </div>
         <div
-          className="scroll flex-grow md:h-auto bg-gray-300 flex flex-col-reverse md:col-start-3 md:col-end-13 overflow-y-scroll">
+          className="scroll flex-grow lg:h-auto bg-gray-200 flex flex-col-reverse lg:col-start-3 lg:col-end-13 overflow-y-scroll">
           <div>
             {messages.map((message, index) => (
               <MsgClientItemComponent

@@ -13,7 +13,7 @@ function MsgClientTabComponent({tabId, currentTab, changeTab}: AppProps) {
   return (
     <div
       onClick={() => changeTab(tabId)}
-      className={`px-4 border-r hover:underline border-gray-700 last:border-r-0 cursor-pointer ${currentTab ? "underline" : "no-underline"}`}>
+      className={`first:border-l mb-1 px-4 py-2 hover:bg-gray-300 border-r border-b border-gray-300 bg-gray-200 cursor-pointer ${currentTab ? "bg-gray-300" : "bg-gray-200"}`}>
       {tabName}
     </div>
   )

@@ -5,20 +5,20 @@ function HeaderComponent() {
   const {logout, loginWithRedirect, isAuthenticated, isLoading} = useAuth0()
 
   return (
-    <header className="bg-gray-700 flex items-center justify-between w-screen h-16 border-b-2 border-gray-200">
-      <h1 className="text-gray-200 text-xl sm:text-2xl font-bold m-2">
-        Some Message App
+    <header className="bg-gray-200 flex items-center justify-between w-screen h-16 border-b border-gray-400">
+      <h1 className="text-gray-800 text-3xl font-bold m-2">
+        Transmitter
       </h1>
       {isLoading ? (
         <p className="text-gray-200 px-4">Loading...</p>
       ) : isAuthenticated ? (
         <HeaderButtonComponent
-          text="Logout"
+          text="Log Out"
           handleClick={() => logout({returnTo: window.location.origin})}
         />
       ) : (
         <HeaderButtonComponent
-          text="Login"
+          text="Log In"
           handleClick={() => loginWithRedirect()}
         />
       )}

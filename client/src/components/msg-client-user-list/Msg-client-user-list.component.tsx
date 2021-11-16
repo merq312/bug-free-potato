@@ -18,7 +18,7 @@ function MsgClientUserListComponent({self, userList}: AppProps) {
                  dispatch(openRoom(user.uuid))
                }
              }}
-             className={`text-gray-800 inline-block md:block text-base md:text-xl px-2 py-1 cursor-pointer ${self === user.userName ? "font-bold" : ""}`}
+             className={`text-gray-800 inline-block lg:block text-base lg:text-xl px-2 py-1 cursor-pointer ${self === user.userName ? "font-bold" : ""}`}
              data-cy="users"
         >
           {user.userName}
