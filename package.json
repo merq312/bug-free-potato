@@ -2,7 +2,7 @@
   "name": "instant-messenger",
   "version": "1.0.0",
   "description": "",
-  "main": "server.ts",
+  "main": "src/server.ts",
   "scripts": {
     "client": "cd client && npm start",
     "dev": "concurrently --kill-others-on-fail \"npm run start\" \"npm run client\"",

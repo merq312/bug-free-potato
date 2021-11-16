@@ -2,6 +2,7 @@ import http from "http";
 import express from "express";
 import {Server, Socket} from "socket.io";
 import {v4 as uuid} from "uuid";
+import FixedSizeArray from "./fixed-size-array";
 
 export const app = express()
 export const server = http.createServer(app)
@@ -12,7 +13,13 @@ interface IMClientUser {
   uuid: string
 }
 
+interface Message {
+  userName: string,
+  content: string,
+}
+
 const onlineUsers: Record<string, IMClientUser> = {}
+const globalMessages = FixedSizeArray<Message>(100)
 
 io.on("connection", (socket) => {
   console.log(
@@ -20,6 +27,11 @@ io.on("connection", (socket) => {
   )
 
   socket.join("Global")
+
+  for (const message of globalMessages) {
+    if (message) socket.emit("chat message", message.userName, message.content, "Global")
+  }
+
   addNewUser(socket);
   sendUserInfo(socket);
   sendListOfUsers();
@@ -66,6 +78,9 @@ function sendChatMessage(socket: Socket) {
       }
     } else {
       socket.to(roomName).emit("chat message", onlineUsers[socketId].userName, messageContent, roomName)
+      globalMessages.push({
+        userName: onlineUsers[socketId].userName, content: messageContent
+      })
     }
   })
 }
