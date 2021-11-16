@@ -36,9 +36,9 @@ export const roomSlice = createSlice({
           messageReducer(
             state[action.payload.roomId],
             sendMessage({
+                userName: action.payload.userName,
                 content: action.payload.content,
                 sentAt: action.payload.sentAt,
-                userName: action.payload.userName
               }
             ))
       }
@@ -49,9 +49,9 @@ export const roomSlice = createSlice({
           messageReducer(
             state[action.payload.roomId],
             receiveMessage({
+                userName: action.payload.userName,
                 content: action.payload.content,
                 sentAt: action.payload.sentAt,
-                userName: action.payload.userName
               }
             ))
       }
