@@ -8,12 +8,12 @@ export const createSocketMiddleware = () => {
     let socket = io()
 
     // Receiving a message
-    socket.on("chat message", (userName, messageContent, roomName) => {
+    socket.on("chat message", (userName, messageContent, sentAt, roomName) => {
       storeAPI.dispatch(
         receiveMessageFromRoom({
           content: messageContent,
           userName: userName,
-          sentAt: new Date().getTime().toString(),
+          sentAt: sentAt,
           roomId: roomName
         })
       )
@@ -38,7 +38,8 @@ export const createSocketMiddleware = () => {
           "chat message",
           action.payload.socketId,
           action.payload.content,
-          action.payload.roomId
+          action.payload.sentAt,
+          action.payload.roomId,
         )
       }
 

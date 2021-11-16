@@ -16,10 +16,11 @@ interface IMClientUser {
 interface Message {
   userName: string,
   content: string,
+  sentAt: string,
 }
 
 const onlineUsers: Record<string, IMClientUser> = {}
-const globalMessages = FixedSizeArray<Message>(100)
+const globalMessages = FixedSizeArray<Message>(10)
 
 io.on("connection", (socket) => {
   console.log(
@@ -29,7 +30,7 @@ io.on("connection", (socket) => {
   socket.join("Global")
 
   for (const message of globalMessages) {
-    if (message) socket.emit("chat message", message.userName, message.content, "Global")
+    if (message) socket.emit("chat message", message.userName, message.content, message.sentAt, "Global")
   }
 
   addNewUser(socket);
@@ -69,19 +70,43 @@ function sendListOfUsers() {
 }
 
 function sendChatMessage(socket: Socket) {
-  socket.on("chat message", (socketId: string, messageContent: string, roomName: string) => {
-    // IF THE ROOM-NAME IS NOT "GLOBAL", FIND THE ROOM-ID FROM THE ROOM-NAME
-    if (roomName !== "Global") {
-      const roomId = Object.keys(onlineUsers).find(key => onlineUsers[key].uuid === roomName);
-      if (roomId) {
-        socket.to(roomId).emit("chat message", onlineUsers[socketId].userName, messageContent, onlineUsers[socketId].uuid)
+  socket.on(
+    "chat message",
+    (socketId: string, messageContent: string, sentAt: string, roomId: string) => {
+      if (roomId !== "Global") {
+        sentChatMessageOther(socket, socketId, messageContent, sentAt, roomId);
+      } else {
+        sendChatMessageGlobal(socket, socketId, messageContent, sentAt);
       }
-    } else {
-      socket.to(roomName).emit("chat message", onlineUsers[socketId].userName, messageContent, roomName)
-      globalMessages.push({
-        userName: onlineUsers[socketId].userName, content: messageContent
-      })
-    }
+    })
+}
+
+function sentChatMessageOther(socket: Socket, socketId: string, messageContent: string, sentAt: string, roomId: string) {
+  const receiverSocketId = findSocketId(roomId);
+
+  if (receiverSocketId) {
+    socket.to(receiverSocketId).emit(
+      "chat message",
+      onlineUsers[socketId].userName,
+      messageContent,
+      sentAt,
+      onlineUsers[socketId].uuid)
+  }
+}
+
+function findSocketId(roomName: string) {
+  return Object.keys(onlineUsers).find(key => onlineUsers[key].uuid === roomName);
+}
+
+function sendChatMessageGlobal(socket: Socket, socketId: string, messageContent: string, sentAt: string) {
+  socket.to("Global").emit(
+    "chat message",
+    onlineUsers[socketId].userName, messageContent, sentAt, "Global")
+
+  globalMessages.push({
+    userName: onlineUsers[socketId].userName,
+    content: messageContent,
+    sentAt: sentAt
   })
 }
 
