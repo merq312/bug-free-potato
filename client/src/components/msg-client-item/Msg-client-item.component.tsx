@@ -8,8 +8,8 @@ type AppProps = {
 function MsgClientItemComponent({message, messageTimeStamp}: AppProps) {
   return (
     <div
-      className="flex bg-opacity-75 items-center justify-end bg-gray-300 mb-2 px-4 transition-opacity hover:bg-opacity-40">
-      <div className="text-gray-800 flex flex-col justify-start my-1">
+      className="flex bg-opacity-75 items-center justify-end bg-gray-300 dark:bg-gray-800 mb-2 last:mb-0 lg:last:mb-2 px-4 transition-opacity hover:bg-opacity-40">
+      <div className="text-gray-800 dark:text-gray-200 flex flex-col justify-start my-1">
         <div className="flex justify-end">
           <div className="text-sm mr-1">
             {messageTimeStamp ? messageTimeStamp : "just now"}

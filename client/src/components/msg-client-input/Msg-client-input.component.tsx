@@ -34,13 +34,13 @@ function MsgClientInputComponent({userName, sendMessageHelper}: AppProps) {
   }
 
   return (
-    <div className="bg-gray-200">
+    <div>
       <form
         onSubmit={handleSubmit}
         className="h-full grid lg:grid-rows-1 grid-cols-12 items-center justify-around"
       >
         <input
-          className="text-base lg:text-2xl col-start-1 col-end-13 lg:col-start-1 lg:col-end-3 px-3 text-gray-800 bg-gray-200 focus:outline-none resize-none"
+          className="text-base h-full border-r border-gray-300 dark:border-gray-700 lg:text-2xl col-start-1 col-end-13 lg:col-start-1 lg:col-end-3 px-3 text-gray-800 dark:text-gray-200 bg-gray-200 dark:bg-gray-900 focus:outline-none resize-none"
           name="user-name"
           autoComplete="off"
           value={displayName}
@@ -48,9 +48,9 @@ function MsgClientInputComponent({userName, sendMessageHelper}: AppProps) {
           onChange={handleNameChange}
           data-cy="input-username"
         />
-        <div className="col-start-1 lg:col-start-3 col-end-13 flex bg-gray-300">
+        <div className="col-start-1 lg:col-start-3 col-end-13 flex bg-gray-300 dark:bg-gray-800">
           <input
-            className="flex-grow min-w-0 my-3 px-3 py-1.5 bg-gray-300 text-gray-900 focus:outline-none resize-none"
+            className="flex-grow min-w-0 my-3 px-3 py-1.5 bg-gray-300 dark:bg-gray-800 text-gray-800 dark:text-gray-200 focus:outline-none resize-none"
             name="user-input"
             autoComplete="off"
             value={userInput}
@@ -60,7 +60,7 @@ function MsgClientInputComponent({userName, sendMessageHelper}: AppProps) {
           />
           <button
             type="submit"
-            className="px-2 sm:px-4 text-gray-800 font-bold"
+            className="px-2 sm:px-4 text-gray-800 dark:text-gray-200 font-bold"
             data-cy="send-message"
           >
             Send

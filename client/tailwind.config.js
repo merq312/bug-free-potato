@@ -2,7 +2,7 @@ const colors = require('tailwindcss/colors')
 
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class', // false or 'media' or 'class'
   theme: {
     colors: {
       transparent: 'transparent',
@@ -22,6 +22,7 @@ module.exports = {
   variants: {
     extend: {
       borderWidth: ["first", "last"],
+      margin: ["last"],
     },
   },
   plugins: [],
