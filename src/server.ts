@@ -4,10 +4,10 @@ import {app, server} from "./app";
 
 app.use(express.static(path.join(__dirname, "../client/build")))
 
-app.get("*", (req, res) => {
-  const filePath = path.join(__dirname + "../client/build", "index.html")
-  res.sendFile(filePath)
-})
+// app.get("*", (req, res) => {
+//   const filePath = path.join(__dirname + "../client/build", "index.html")
+//   res.sendFile(filePath)
+// })
 
 const port = process.env.PORT || 3000
 server.listen(port, () => {
