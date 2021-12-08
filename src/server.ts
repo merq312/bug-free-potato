@@ -9,7 +9,7 @@ app.use(express.static(path.join(__dirname, "../client/build")))
 //   res.sendFile(filePath)
 // })
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3333
 server.listen(port, () => {
   console.log("listening on *:" + port)
 })

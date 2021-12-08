@@ -5,7 +5,7 @@ import {receiveMessageFromRoom, sendMessageToRoom} from "../room/roomSlice";
 
 export const createSocketMiddleware = () => {
   return (storeAPI: any) => {
-    let socket = io()
+    let socket = io(process.env.NODE_ENV === 'development' ? 'http://localhost:3333' : '')
 
     // Receiving a message
     socket.on("chat message", (userName, messageContent, sentAt, roomName) => {
