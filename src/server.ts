@@ -1,13 +1,22 @@
-import path from "path";
-import express from "express";
-import {app, server} from "./app";
+import path from "path"
+import * as express from "express"
+import { app, server } from "./app"
+import userRouter from "./userRouter"
 
 app.use(express.static(path.join(__dirname, "../client/build")))
+app.use(
+  express.json({
+    limit: "10kb",
+  })
+)
+app.use(express.urlencoded({ extended: true, limit: "10kb" }))
 
 // app.get("*", (req, res) => {
 //   const filePath = path.join(__dirname + "../client/build", "index.html")
 //   res.sendFile(filePath)
 // })
+
+app.use("/api/user", userRouter)
 
 const port = process.env.PORT || 3333
 server.listen(port, () => {

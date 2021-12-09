@@ -14,6 +14,7 @@ ReactDOM.render(
     <Auth0Provider
       domain="dev-iukg50h5.us.auth0.com"
       clientId="JNiZqluYFD7grpEiAMRczMQRSIFG2yqk"
+      audience="https://pacific-reef-85991.herokuapp.com/api"
       redirectUri={window.location.origin}
     >
       <Provider store={store}>
