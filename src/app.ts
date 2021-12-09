@@ -1,8 +1,8 @@
-import http from "http";
-import express from "express";
-import {Server, Socket} from "socket.io";
-import {v4 as uuid} from "uuid";
-import FixedSizeArray from "./fixed-size-array";
+import http from "http"
+import express from "express"
+import { Server, Socket } from "socket.io"
+import { v4 as uuid } from "uuid"
+import FixedSizeArray from "./utils/fixed-size-array"
 
 export const app = express()
 export const server = http.createServer(app)
@@ -14,9 +14,9 @@ interface IMClientUser {
 }
 
 interface Message {
-  userName: string,
-  content: string,
-  sentAt: string,
+  userName: string
+  content: string
+  sentAt: string
 }
 
 const onlineUsers: Record<string, IMClientUser> = {}
@@ -30,22 +30,29 @@ io.on("connection", (socket) => {
   socket.join("Global")
 
   for (const message of globalMessages) {
-    if (message) socket.emit("chat message", message.userName, message.content, message.sentAt, "Global")
+    if (message)
+      socket.emit(
+        "chat message",
+        message.userName,
+        message.content,
+        message.sentAt,
+        "Global"
+      )
   }
 
-  addNewUser(socket);
-  sendUserInfo(socket);
-  sendListOfUsers();
-  sendChatMessage(socket);
-  setUserName(socket);
-  disconnect(socket);
+  addNewUser(socket)
+  sendUserInfo(socket)
+  sendListOfUsers()
+  sendChatMessage(socket)
+  setUserName(socket)
+  disconnect(socket)
 })
 
 function addUser(socketId: string) {
   return {
     [socketId]: {
       userName: "Guest" + Math.floor(Math.random() * 10000),
-      uuid: uuid()
+      uuid: uuid(),
     },
   }
 }
@@ -72,41 +79,69 @@ function sendListOfUsers() {
 function sendChatMessage(socket: Socket) {
   socket.on(
     "chat message",
-    (socketId: string, messageContent: string, sentAt: string, roomId: string) => {
+    (
+      socketId: string,
+      messageContent: string,
+      sentAt: string,
+      roomId: string
+    ) => {
       if (roomId !== "Global") {
-        sentChatMessageOther(socket, socketId, messageContent, sentAt, roomId);
+        sentChatMessageOther(socket, socketId, messageContent, sentAt, roomId)
       } else {
-        sendChatMessageGlobal(socket, socketId, messageContent, sentAt);
+        sendChatMessageGlobal(socket, socketId, messageContent, sentAt)
       }
-    })
+    }
+  )
 }
 
-function sentChatMessageOther(socket: Socket, socketId: string, messageContent: string, sentAt: string, roomId: string) {
-  const receiverSocketId = findSocketId(roomId);
+function sentChatMessageOther(
+  socket: Socket,
+  socketId: string,
+  messageContent: string,
+  sentAt: string,
+  roomId: string
+) {
+  const receiverSocketId = findSocketId(roomId)
 
   if (receiverSocketId) {
-    socket.to(receiverSocketId).emit(
-      "chat message",
-      onlineUsers[socketId].userName,
-      messageContent,
-      sentAt,
-      onlineUsers[socketId].uuid)
+    socket
+      .to(receiverSocketId)
+      .emit(
+        "chat message",
+        onlineUsers[socketId].userName,
+        messageContent,
+        sentAt,
+        onlineUsers[socketId].uuid
+      )
   }
 }
 
 function findSocketId(roomName: string) {
-  return Object.keys(onlineUsers).find(key => onlineUsers[key].uuid === roomName);
+  return Object.keys(onlineUsers).find(
+    (key) => onlineUsers[key].uuid === roomName
+  )
 }
 
-function sendChatMessageGlobal(socket: Socket, socketId: string, messageContent: string, sentAt: string) {
-  socket.to("Global").emit(
-    "chat message",
-    onlineUsers[socketId].userName, messageContent, sentAt, "Global")
+function sendChatMessageGlobal(
+  socket: Socket,
+  socketId: string,
+  messageContent: string,
+  sentAt: string
+) {
+  socket
+    .to("Global")
+    .emit(
+      "chat message",
+      onlineUsers[socketId].userName,
+      messageContent,
+      sentAt,
+      "Global"
+    )
 
   globalMessages.push({
     userName: onlineUsers[socketId].userName,
     content: messageContent,
-    sentAt: sentAt
+    sentAt: sentAt,
   })
 }
 
