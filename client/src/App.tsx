@@ -7,39 +7,33 @@ import axios from "axios"
 
 function App() {
   const [darkMode, setDarkMode] = useState(false)
-  const [message, setMessage] = useState("")
   const [token, setToken] = useState("")
 
-  const { isAuthenticated, getAccessTokenSilently } = useAuth0()
+  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
 
   useEffect(() => {
-    if (message) {
-      console.log(message)
+    if (isAuthenticated) {
+      getAccessTokenSilently().then(setToken)
     }
-  }, [message])
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      return
-    }
-
-    getAccessTokenSilently().then(setToken)
   }, [isAuthenticated, getAccessTokenSilently])
 
   useEffect(() => {
-    if (!token) {
-      return
+    if (token && user && user.sub) {
+      axios
+        .post(
+          "http://localhost:3333/api/user/private",
+          {
+            uid: user.sub,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .catch((err) => console.log(err))
     }
-
-    axios
-      .get("http://localhost:3333/api/user/private", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((r) => setMessage(r.data.message))
-      .catch((err) => console.log(err))
-  }, [token])
+  }, [token, user])
 
   return (
     <div className={`${darkMode ? "dark" : ""} flex flex-col h-screen`}>

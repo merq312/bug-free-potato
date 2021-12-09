@@ -1,5 +1,5 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit"
-import { logger } from "redux-logger"
+// import { logger } from "redux-logger"
 import counterReducer from "./counter/counterSlice"
 import messageReducer from "./message/messageSlice"
 import userReducer from "./user/userSlice"
@@ -14,7 +14,7 @@ export const store = configureStore({
     rooms: roomReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(createSocketMiddleware(), logger),
+    getDefaultMiddleware().concat(createSocketMiddleware()), // logger
 })
 
 export type AppDispatch = typeof store.dispatch

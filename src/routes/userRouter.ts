@@ -9,20 +9,13 @@ const checkJwt = auth({
   issuerBaseURL: `https://dev-iukg50h5.us.auth0.com/`,
 })
 
-router.get("/private", checkJwt, (req, res) => {
+router.post("/private", checkJwt, (req, res) => {
+  const { uid } = req.body
+  console.log(uid)
+
   res.status(200).json({
     status: "success",
-    message: "You are authenticated",
   })
 })
-
-const errorHandler: ErrorRequestHandler = (err, req, res) => {
-  if (err.name === "UnauthorizedError") {
-    return res.status(401).json({ message: "Invalid token" })
-  }
-  return res.status(500).json({ message: "Server error" })
-}
-
-router.use(errorHandler)
 
 export default router
