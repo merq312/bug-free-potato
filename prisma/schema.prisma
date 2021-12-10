@@ -12,7 +12,7 @@ datasource db {
 
 model User {
   id Int @unique @default(autoincrement())
-  uid String @unique
+  uuid String @unique
   name String @db.VarChar(255)
   messages Message[]
   rooms UsersOnRooms[]
