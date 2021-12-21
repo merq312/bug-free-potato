@@ -13,9 +13,11 @@ function MsgClientItemComponent({ message, messageTimeStamp }: AppProps) {
           <div className="text-sm mr-1">
             {messageTimeStamp ? messageTimeStamp : "just now"}
           </div>
-          <div className="text-sm font-bold">{message.userName}</div>
+          <div className="text-sm font-bold" data-cy="message-username">
+            {message.userName}
+          </div>
         </div>
-        <div className="text-right text-lg" data-cy="messages">
+        <div className="text-right text-lg" data-cy="message-content">
           {message.content.split("\n").map((ea) => (
             <p>{ea}</p>
           ))}
