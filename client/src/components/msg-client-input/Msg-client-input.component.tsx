@@ -1,13 +1,19 @@
-import {ChangeEvent, FormEvent, useEffect, useState} from "react"
-import {useAppDispatch} from "../../features/hooks"
-import {setUserName} from "../../features/user/userSlice"
+import {
+  ChangeEvent,
+  FormEvent,
+  KeyboardEvent,
+  useEffect,
+  useState,
+} from "react"
+import { useAppDispatch } from "../../features/hooks"
+import { setUserName } from "../../features/user/userSlice"
 
 type AppProps = {
   sendMessageHelper: (arg0: string) => void
   userName: string
 }
 
-function MsgClientInputComponent({userName, sendMessageHelper}: AppProps) {
+function MsgClientInputComponent({ userName, sendMessageHelper }: AppProps) {
   const [userInput, setUserInput] = useState("")
   const [displayName, setDisplayName] = useState(userName)
   const dispatch = useAppDispatch()
@@ -16,7 +22,7 @@ function MsgClientInputComponent({userName, sendMessageHelper}: AppProps) {
     setDisplayName(userName)
   }, [userName])
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setUserInput(e.target.value)
   }
 
@@ -25,12 +31,18 @@ function MsgClientInputComponent({userName, sendMessageHelper}: AppProps) {
     dispatch(setUserName(e.target.value))
   }
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault()
+  const handleSubmit = (e: FormEvent | void) => {
+    if (e) e.preventDefault()
     if (userInput !== "") {
       sendMessageHelper(userInput)
     }
     setUserInput("")
+  }
+
+  const checkReturnKey = (e: KeyboardEvent) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      handleSubmit()
+    }
   }
 
   return (
@@ -49,13 +61,14 @@ function MsgClientInputComponent({userName, sendMessageHelper}: AppProps) {
           data-cy="input-username"
         />
         <div className="col-start-1 lg:col-start-3 col-end-13 flex bg-gray-300 dark:bg-gray-800">
-          <input
-            className="flex-grow min-w-0 my-3 px-3 py-1.5 bg-gray-300 dark:bg-gray-800 text-gray-800 dark:text-gray-200 focus:outline-none resize-none"
+          <textarea
+            className="no-scrollbar flex-grow min-w-0 my-3 px-3 py-1.5 bg-gray-300 dark:bg-gray-800 text-gray-800 dark:text-gray-200 focus:outline-none resize-none"
             name="user-input"
+            rows={1}
             autoComplete="off"
             value={userInput}
-            type="text"
             onChange={handleInputChange}
+            onKeyDown={checkReturnKey}
             data-cy="input-message"
           />
           <button
