@@ -18,8 +18,8 @@ function MsgClientItemComponent({ message, messageTimeStamp }: AppProps) {
           </div>
         </div>
         <div className="text-right text-lg" data-cy="message-content">
-          {message.content.split("\n").map((ea) => (
-            <p>{ea}</p>
+          {message.content.split("\n").map((ea, idx) => (
+            <p key={idx}>{ea}</p>
           ))}
         </div>
       </div>
