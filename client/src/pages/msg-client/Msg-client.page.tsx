@@ -1,9 +1,17 @@
 import TimeAgo from "javascript-time-ago"
 import en from "javascript-time-ago/locale/en.json"
-import {createRef, RefObject, useEffect, useState} from "react"
-import {useAppDispatch, useAppSelector} from "../../features/hooks"
-import {selectMessages, selectTabs, sendMessageToRoom} from "../../features/room/roomSlice"
-import {selectSocketId, selectUserList, selectUserName} from "../../features/user/userSlice"
+import { createRef, RefObject, useEffect, useState } from "react"
+import { useAppDispatch, useAppSelector } from "../../features/hooks"
+import {
+  selectMessages,
+  selectTabs,
+  sendMessageToRoom,
+} from "../../features/room/roomSlice"
+import {
+  selectSocketId,
+  selectUserList,
+  selectUserName,
+} from "../../features/user/userSlice"
 import MsgClientInputComponent from "../../components/msg-client-input/Msg-client-input.component"
 import MsgClientItemComponent from "../../components/msg-client-item/Msg-client-item.component"
 import MsgClientTabComponent from "../../components/msg-client-tab/Msg-client-tab.component"
@@ -67,18 +75,15 @@ function MsgClientPage() {
   }
 
   return (
-    <div
-      className="flex flex-col col-start-1 col-end-13 h-full border-l border-r border-gray-300 dark:border-gray-700 overflow-hidden lg:col-start-3 lg:col-end-11">
+    <div className="flex flex-col col-start-1 col-end-13 h-full border-l border-r border-gray-300 dark:border-gray-700 overflow-hidden lg:col-start-3 lg:col-end-11">
       <div
         className="h-full flex flex-col grid-rows-tabs lg:grid lg:grid-cols-12 overflow-hidden"
         ref={scrollSection}
       >
-        <div
-          className="row-span-full border-r border-b border-gray-300 dark:border-gray-700 lg:col-start-1 lg:col-end-3">
-          <MsgClientUserListComponent self={userName} userList={userList}/>
+        <div className="row-span-full border-r border-b border-gray-300 dark:border-gray-700 lg:col-start-1 lg:col-end-3">
+          <MsgClientUserListComponent self={userName} userList={userList} />
         </div>
-        <div
-          className="flex text-gray-800 dark:text-gray-200 mb-1 border-b border-gray-300 dark:border-gray-700 text-base lg:text-xl lg:col-start-3 lg:col-end-13">
+        <div className="flex text-gray-800 dark:text-gray-200 mb-1 border-b border-gray-300 dark:border-gray-700 text-base lg:text-xl lg:col-start-3 lg:col-end-13">
           {tabs.map((tabId) => (
             <MsgClientTabComponent
               key={tabId}
@@ -86,11 +91,11 @@ function MsgClientPage() {
               currentTab={currentTab === tabId}
               changeTab={(tabId: string) => {
                 setCurrentTab(tabId)
-              }}/>
+              }}
+            />
           ))}
         </div>
-        <div
-          className="scroll border-b border-gray-300 dark:border-gray-700 flex-grow lg:h-auto flex flex-col-reverse lg:col-start-3 lg:col-end-13 overflow-y-scroll">
+        <div className="scroll scrollbar border-b border-gray-300 dark:border-gray-700 flex-grow lg:h-auto flex flex-col-reverse lg:col-start-3 lg:col-end-13 overflow-y-scroll">
           <div>
             {messages.map((message, index) => (
               <MsgClientItemComponent

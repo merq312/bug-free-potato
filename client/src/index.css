@@ -8,9 +8,30 @@
     }
 
     .no-scrollbar {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
     }
+
+    .scrollbar {
+        scrollbar-color: #a0a0a9 transparent;
+        scrollbar-width: thin;
+    }
+
+    .scrollbar::-webkit-scrollbar {
+         width: 8px;
+     }
+
+    .scrollbar::-webkit-scrollbar-track {
+         background: transparent;
+     }
+
+    .scrollbar::-webkit-scrollbar-thumb {
+         background: #a0a0a9;
+     }
+
+    .scrollbar::-webkit-scrollbar-thumb:hover {
+         background: #888;
+     }
 }
 
 body {
