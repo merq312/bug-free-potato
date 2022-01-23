@@ -15,7 +15,7 @@ export interface MessageReceivePacket extends Message {
   roomId: string
 }
 
-const initialState: Record<string, Array<Message>> = {
+export const initialState: Record<string, Array<Message>> = {
   Global: [
     {
       content:

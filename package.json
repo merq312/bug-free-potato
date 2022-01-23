@@ -20,6 +20,9 @@
   "author": "merq312",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.16",
     "@prisma/client": "^3.4.1",
     "express": "^4.17.1",
     "express-oauth2-jwt-bearer": "^1.0.1",
