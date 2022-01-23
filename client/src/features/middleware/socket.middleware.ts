@@ -1,31 +1,38 @@
-import {AnyAction} from "redux"
-import {io} from "socket.io-client"
-import {setSocketId, setUserId, setUserName, updateUserList} from "../user/userSlice"
-import {receiveMessageFromRoom, sendMessageToRoom} from "../room/roomSlice";
+import { AnyAction } from 'redux'
+import { io } from 'socket.io-client'
+import {
+  setSocketId,
+  setUserId,
+  setUserName,
+  updateUserList,
+} from '../user/userSlice'
+import { receiveMessageFromRoom, sendMessageToRoom } from '../room/roomSlice'
 
 export const createSocketMiddleware = () => {
   return (storeAPI: any) => {
-    let socket = io(process.env.NODE_ENV === 'development' ? 'http://localhost:3333' : '')
+    let socket = io(
+      process.env.NODE_ENV === 'development' ? 'http://localhost:3333' : ''
+    )
 
     // Receiving a message
-    socket.on("chat message", (userName, messageContent, sentAt, roomName) => {
+    socket.on('chat message', (userName, messageContent, sentAt, roomName) => {
       storeAPI.dispatch(
         receiveMessageFromRoom({
           content: messageContent,
           userName: userName,
           sentAt: sentAt,
-          roomId: roomName
+          roomId: roomName,
         })
       )
     })
 
     // Receive list of online users (whenever it changes)
-    socket.on("user list", (onlineUsers) => {
+    socket.on('user list', (onlineUsers) => {
       storeAPI.dispatch(updateUserList(onlineUsers))
     })
 
     // Receive guest name on connect
-    socket.on("user info", (user, socketId) => {
+    socket.on('user info', (user, socketId) => {
       storeAPI.dispatch(setUserName(user.userName))
       storeAPI.dispatch(setUserId(user.uuid))
       storeAPI.dispatch(setSocketId(socketId))
@@ -35,20 +42,17 @@ export const createSocketMiddleware = () => {
       // Sending a message
       if (sendMessageToRoom.match(action)) {
         socket.emit(
-          "chat message",
+          'chat message',
           action.payload.socketId,
           action.payload.content,
           action.payload.sentAt,
-          action.payload.roomId,
+          action.payload.roomId
         )
       }
 
       // Updating user name
       if (setUserName.match(action)) {
-        socket.emit(
-          "set user name",
-          action.payload
-        )
+        socket.emit('set user name', action.payload)
       }
 
       return next(action)

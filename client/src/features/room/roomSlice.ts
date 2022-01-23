@@ -1,10 +1,10 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { RootState } from "../store"
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { RootState } from '../store'
 import messageReducer, {
   Message,
   receiveMessage,
   sendMessage,
-} from "../message/messageSlice"
+} from '../message/messageSlice'
 
 export interface MessageSendPacket extends Message {
   socketId: string
@@ -20,14 +20,14 @@ export const initialState: Record<string, Array<Message>> = {
     {
       content:
         "Hello there! Use the input below to send a message.\nClick on your name on the bottom left to change your name.\nClick on another user's name to open a private chat with them!",
-      sentAt: "1640067562461",
-      userName: "Chamila",
+      sentAt: '1640067562461',
+      userName: 'Chamila',
     },
   ],
 }
 
 export const roomSlice = createSlice({
-  name: "rooms",
+  name: 'rooms',
   initialState,
   reducers: {
     openRoom: (state, action: PayloadAction<string>) => {

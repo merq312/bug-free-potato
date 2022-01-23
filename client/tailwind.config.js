@@ -1,7 +1,7 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: 'class', // false or 'media' or 'class'
   theme: {
     colors: {
@@ -11,18 +11,18 @@ module.exports = {
       red: colors.red,
       blue: colors.sky,
       black: colors.black,
-      white: colors.white
+      white: colors.white,
     },
     extend: {
       gridTemplateRows: {
-        tabs: "min-content 1fr",
+        tabs: 'min-content 1fr',
       },
     },
   },
   variants: {
     extend: {
-      borderWidth: ["first", "last"],
-      margin: ["last"],
+      borderWidth: ['first', 'last'],
+      margin: ['last'],
     },
   },
   plugins: [],

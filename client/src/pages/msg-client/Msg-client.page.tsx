@@ -1,24 +1,24 @@
-import TimeAgo from "javascript-time-ago"
-import en from "javascript-time-ago/locale/en.json"
-import { createRef, RefObject, useEffect, useState } from "react"
-import { useAppDispatch, useAppSelector } from "../../features/hooks"
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en.json'
+import { createRef, RefObject, useEffect, useState } from 'react'
+import { useAppDispatch, useAppSelector } from '../../features/hooks'
 import {
   selectMessages,
   selectTabs,
   sendMessageToRoom,
-} from "../../features/room/roomSlice"
+} from '../../features/room/roomSlice'
 import {
   selectSocketId,
   selectUserList,
   selectUserName,
-} from "../../features/user/userSlice"
-import MsgClientInputComponent from "../../components/msg-client-input/Msg-client-input.component"
-import MsgClientItemComponent from "../../components/msg-client-item/Msg-client-item.component"
-import MsgClientTabComponent from "../../components/msg-client-tab/Msg-client-tab.component"
-import MsgClientUserListComponent from "../../components/msg-client-user-list/Msg-client-user-list.component"
+} from '../../features/user/userSlice'
+import MsgClientInputComponent from '../../components/msg-client-input/Msg-client-input.component'
+import MsgClientItemComponent from '../../components/msg-client-item/Msg-client-item.component'
+import MsgClientTabComponent from '../../components/msg-client-tab/Msg-client-tab.component'
+import MsgClientUserListComponent from '../../components/msg-client-user-list/Msg-client-user-list.component'
 
 TimeAgo.addDefaultLocale(en)
-const timeAgo = new TimeAgo("en-US")
+const timeAgo = new TimeAgo('en-US')
 
 function MsgClientPage() {
   const dispatch = useAppDispatch()
@@ -28,7 +28,7 @@ function MsgClientPage() {
   const userList = useAppSelector(selectUserList)
 
   const tabs = useAppSelector(selectTabs)
-  const [currentTab, setCurrentTab] = useState("Global")
+  const [currentTab, setCurrentTab] = useState('Global')
 
   const messages = useAppSelector(selectMessages(currentTab))
 
@@ -50,7 +50,7 @@ function MsgClientPage() {
     messages.forEach((message, index) => {
       const timeAgoString = timeAgo.format(new Date(parseInt(message.sentAt)))
 
-      if (typeof timeAgoString === "string") {
+      if (typeof timeAgoString === 'string') {
         newMessageTimeStamps[index] = timeAgoString
       }
     })

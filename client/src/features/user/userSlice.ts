@@ -1,31 +1,31 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit"
-import {RootState} from "../store"
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { RootState } from '../store'
 
 export interface otherUser {
-  uuid: string,
-  userName: string,
+  uuid: string
+  userName: string
 }
 
 export interface UserState {
   self: {
-    socketId: string,
-    userId: string,
-    userName: string,
+    socketId: string
+    userId: string
+    userName: string
   }
   userList: Array<otherUser>
 }
 
 const initialState: UserState = {
   self: {
-    socketId: "",
-    userId: "123",
-    userName: "Guest"
+    socketId: '',
+    userId: '123',
+    userName: 'Guest',
   },
   userList: [],
 }
 
 export const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
     setSocketId: (state, action: PayloadAction<string>) => {
@@ -43,16 +43,17 @@ export const userSlice = createSlice({
   },
 })
 
-export const {setSocketId, setUserName, setUserId, updateUserList} = userSlice.actions
+export const { setSocketId, setUserName, setUserId, updateUserList } =
+  userSlice.actions
 
 export const selectUserName = (state: RootState) => state.user.self.userName
 export const selectSocketId = (state: RootState) => state.user.self.socketId
 export const selectUserList = (state: RootState) => state.user.userList
 export const selectUserFromUuid = (uuid: string) => (state: RootState) => {
   const userList = selectUserList(state)
-  const user = userList.find(user => user.uuid === uuid)
+  const user = userList.find((user) => user.uuid === uuid)
 
-  return user ? user.userName : "Global"
+  return user ? user.userName : 'Global'
 }
 
 export default userSlice.reducer

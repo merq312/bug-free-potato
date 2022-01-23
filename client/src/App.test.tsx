@@ -1,33 +1,33 @@
-import {render, screen} from "@testing-library/react"
-import {Provider} from "react-redux"
-import {store} from "./features/store"
-import App from "./App"
+import { render, screen } from '@testing-library/react'
+import { Provider } from 'react-redux'
+import { store } from './features/store'
+import App from './App'
 
-describe("Homepage", () => {
-  test("App contains main section", () => {
+describe('Homepage', () => {
+  test('App contains main section', () => {
     render(
       <Provider store={store}>
-        <App/>
+        <App />
       </Provider>
     )
 
-    expect(screen.getByRole("main")).toBeInTheDocument()
+    expect(screen.getByRole('main')).toBeInTheDocument()
   })
 
-  test("App containers header", () => {
+  test('App containers header', () => {
     render(
       <Provider store={store}>
-        <App/>
+        <App />
       </Provider>
     )
 
-    expect(screen.getByRole("banner")).toBeInTheDocument()
+    expect(screen.getByRole('banner')).toBeInTheDocument()
   })
 
-  test("renders correctly", () => {
-    const {asFragment} = render(
+  test('renders correctly', () => {
+    const { asFragment } = render(
       <Provider store={store}>
-        <App/>
+        <App />
       </Provider>
     )
 

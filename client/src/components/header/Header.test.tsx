@@ -1,13 +1,13 @@
-import {render} from "@testing-library/react";
-import HeaderComponent from "./Header.component";
-import {Provider} from "react-redux";
-import {store} from "../../features/store";
+import { render } from '@testing-library/react'
+import HeaderComponent from './Header.component'
+import { Provider } from 'react-redux'
+import { store } from '../../features/store'
 
-describe("Header Component", () => {
-  test("renders correctly", () => {
-    const {asFragment} = render(
+describe('Header Component', () => {
+  test('renders correctly', () => {
+    const { asFragment } = render(
       <Provider store={store}>
-        <HeaderComponent/>
+        <HeaderComponent />
       </Provider>
     )
 

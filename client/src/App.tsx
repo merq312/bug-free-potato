@@ -1,13 +1,13 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom"
-import MsgClientPage from "./pages/msg-client/Msg-client.page"
-import HeaderComponent from "./components/header/Header.component"
-import { useEffect, useState } from "react"
-import { useAuth0 } from "@auth0/auth0-react"
-import axios from "axios"
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import MsgClientPage from './pages/msg-client/Msg-client.page'
+import HeaderComponent from './components/header/Header.component'
+import { useEffect, useState } from 'react'
+import { useAuth0 } from '@auth0/auth0-react'
+import axios from 'axios'
 
 function App() {
   const [darkMode, setDarkMode] = useState(false)
-  const [token, setToken] = useState("")
+  const [token, setToken] = useState('')
 
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
 
@@ -21,7 +21,7 @@ function App() {
     if (token && user && user.sub) {
       axios
         .post(
-          "http://localhost:3333/api/user/private",
+          'http://localhost:3333/api/user/private',
           {
             uid: user.sub,
           },
@@ -36,7 +36,7 @@ function App() {
   }, [token, user])
 
   return (
-    <div className={`${darkMode ? "dark" : ""} flex flex-col h-screen`}>
+    <div className={`${darkMode ? 'dark' : ''} flex flex-col h-screen`}>
       <HeaderComponent setDarkMode={setDarkMode} currentMode={darkMode} />
       <main className="grid grid-cols-12 overflow-hidden h-full text-xl sm:text-2xl bg-gray-200 dark:bg-gray-900">
         <BrowserRouter>

@@ -1,4 +1,4 @@
-import { Message } from "../../features/message/messageSlice"
+import { Message } from '../../features/message/messageSlice'
 
 type AppProps = {
   message: Message
@@ -11,14 +11,14 @@ function MsgClientItemComponent({ message, messageTimeStamp }: AppProps) {
       <div className="text-gray-800 dark:text-gray-200 flex flex-col justify-start my-1">
         <div className="flex justify-end">
           <div className="text-sm mr-1">
-            {messageTimeStamp ? messageTimeStamp : "just now"}
+            {messageTimeStamp ? messageTimeStamp : 'just now'}
           </div>
           <div className="text-sm font-bold" data-cy="message-username">
             {message.userName}
           </div>
         </div>
         <div className="text-right text-lg" data-cy="message-content">
-          {message.content.split("\n").map((ea, idx) => (
+          {message.content.split('\n').map((ea, idx) => (
             <p key={idx}>{ea}</p>
           ))}
         </div>

@@ -4,9 +4,9 @@ import {
   KeyboardEvent,
   useEffect,
   useState,
-} from "react"
-import { useAppDispatch } from "../../features/hooks"
-import { setUserName } from "../../features/user/userSlice"
+} from 'react'
+import { useAppDispatch } from '../../features/hooks'
+import { setUserName } from '../../features/user/userSlice'
 
 type AppProps = {
   sendMessageHelper: (arg0: string) => void
@@ -14,7 +14,7 @@ type AppProps = {
 }
 
 function MsgClientInputComponent({ userName, sendMessageHelper }: AppProps) {
-  const [userInput, setUserInput] = useState("")
+  const [userInput, setUserInput] = useState('')
   const [displayName, setDisplayName] = useState(userName)
   const dispatch = useAppDispatch()
 
@@ -33,14 +33,14 @@ function MsgClientInputComponent({ userName, sendMessageHelper }: AppProps) {
 
   const handleSubmit = (e: FormEvent | void) => {
     if (e) e.preventDefault()
-    if (userInput !== "") {
+    if (userInput !== '') {
       sendMessageHelper(userInput)
     }
-    setUserInput("")
+    setUserInput('')
   }
 
   const checkReturnKey = (e: KeyboardEvent) => {
-    if (e.key === "Enter" && !e.shiftKey) {
+    if (e.key === 'Enter' && !e.shiftKey) {
       handleSubmit()
     }
   }

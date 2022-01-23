@@ -1,8 +1,8 @@
-import { useAppDispatch, useAppSelector } from "../../features/hooks"
-import { selectUserFromUuid } from "../../features/user/userSlice"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTimes } from "@fortawesome/free-solid-svg-icons"
-import { closeRoom } from "../../features/room/roomSlice"
+import { useAppDispatch, useAppSelector } from '../../features/hooks'
+import { selectUserFromUuid } from '../../features/user/userSlice'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { closeRoom } from '../../features/room/roomSlice'
 
 type AppProps = {
   tabId: string
@@ -19,17 +19,17 @@ function MsgClientTabComponent({ tabId, currentTab, changeTab }: AppProps) {
       onClick={() => changeTab(tabId)}
       className={`first:border-l px-4 py-2 hover:bg-gray-300 dark:hover:bg-gray-800 border-r border-gray-300 dark:border-gray-700 bg-gray-200 cursor-pointer flex justify-between items-center ${
         currentTab
-          ? "bg-gray-300 dark:bg-gray-800"
-          : "bg-gray-200 dark:bg-gray-900"
+          ? 'bg-gray-300 dark:bg-gray-800'
+          : 'bg-gray-200 dark:bg-gray-900'
       }`}
     >
       <span>{tabName}</span>
-      {tabId !== "Global" ? (
+      {tabId !== 'Global' ? (
         <span
           className="ml-2"
           onClick={(e) => {
             e.stopPropagation()
-            changeTab("Global")
+            changeTab('Global')
             dispatch(closeRoom(tabId))
           }}
         >

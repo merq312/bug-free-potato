@@ -1,17 +1,16 @@
-import {useAuth0} from "@auth0/auth0-react"
-import HeaderButtonComponent from "../header-button/Header-button.component"
+import { useAuth0 } from '@auth0/auth0-react'
+import HeaderButtonComponent from '../header-button/Header-button.component'
 
 type AppProps = {
-  setDarkMode: (arg0: boolean) => void,
+  setDarkMode: (arg0: boolean) => void
   currentMode: boolean
 }
 
-function HeaderComponent({setDarkMode, currentMode}: AppProps) {
-  const {logout, loginWithRedirect, isAuthenticated, isLoading} = useAuth0()
+function HeaderComponent({ setDarkMode, currentMode }: AppProps) {
+  const { logout, loginWithRedirect, isAuthenticated, isLoading } = useAuth0()
 
   return (
-    <header
-      className="bg-gray-200 dark:bg-gray-900 flex items-center justify-between w-screen h-16 border-b border-gray-400 dark:border-gray-600">
+    <header className="bg-gray-200 dark:bg-gray-900 flex items-center justify-between w-screen h-16 border-b border-gray-400 dark:border-gray-600">
       <h1 className="text-gray-800 dark:text-gray-200 text-3xl font-bold m-2">
         Transmitter
       </h1>
@@ -20,9 +19,14 @@ function HeaderComponent({setDarkMode, currentMode}: AppProps) {
           <div className="mr-2">🌞</div>
           <label htmlFor="toggle" className="flex items-center cursor-pointer">
             <div className="relative">
-              <input onClick={() => setDarkMode(!currentMode)} id="toggle" type="checkbox" className="sr-only"/>
-              <div className="w-6 h-2 bg-gray-400 rounded-full shadow-inner"/>
-              <div className="dot absolute w-4 h-4 bg-white rounded-full shadow -left-1 -top-1 transition"/>
+              <input
+                onClick={() => setDarkMode(!currentMode)}
+                id="toggle"
+                type="checkbox"
+                className="sr-only"
+              />
+              <div className="w-6 h-2 bg-gray-400 rounded-full shadow-inner" />
+              <div className="dot absolute w-4 h-4 bg-white rounded-full shadow -left-1 -top-1 transition" />
             </div>
           </label>
           <div className="ml-2">🌙</div>
@@ -33,7 +37,7 @@ function HeaderComponent({setDarkMode, currentMode}: AppProps) {
         ) : isAuthenticated ? (
           <HeaderButtonComponent
             text="Log Out"
-            handleClick={() => logout({returnTo: window.location.origin})}
+            handleClick={() => logout({ returnTo: window.location.origin })}
           />
         ) : (
           <HeaderButtonComponent
