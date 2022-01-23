@@ -5,9 +5,10 @@ import { store } from '../../features/store'
 
 describe('Header Component', () => {
   test('renders correctly', () => {
+    const setDarkMode = jest.fn()
     const { asFragment } = render(
       <Provider store={store}>
-        <HeaderComponent />
+        <HeaderComponent currentMode={true} setDarkMode={setDarkMode} />
       </Provider>
     )
 
