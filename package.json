@@ -6,7 +6,8 @@
   "scripts": {
     "migrate:db": "prisma migrate dev",
     "reset:db": "prisma db push --accept-data-loss --force-reset && prisma db seed",
-    "cypress:open": "cypress open",
+    "test:client": "cd client && npm run test",
+    "test:e2e": "cypress run",
     "watch:client": "cd client && npm start",
     "watch:server": "ts-node-dev src/server.ts",
     "dev": "concurrently --kill-others-on-fail \"npm run watch:server\" \"npm run watch:client\"",
