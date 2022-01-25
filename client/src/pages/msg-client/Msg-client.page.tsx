@@ -95,7 +95,7 @@ function MsgClientPage() {
             />
           ))}
         </div>
-        <div className="scroll scrollbar border-b border-gray-300 dark:border-gray-700 flex-grow lg:h-auto flex flex-col-reverse lg:col-start-3 lg:col-end-13 overflow-y-scroll">
+        <div className="scroll scrollbar ml-2 border-b border-gray-300 dark:border-gray-700 flex-grow lg:h-auto flex flex-col-reverse lg:col-start-3 lg:col-end-13 overflow-y-scroll">
           <div>
             {messages.map((message, index) => (
               <MsgClientItemComponent

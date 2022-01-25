@@ -7,6 +7,8 @@ import {
 } from 'react'
 import { useAppDispatch } from '../../features/hooks'
 import { setUserName } from '../../features/user/userSlice'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
 type AppProps = {
   sendMessageHelper: (arg0: string) => void
@@ -77,6 +79,7 @@ function MsgClientInputComponent({ userName, sendMessageHelper }: AppProps) {
             data-cy="send-message"
           >
             Send
+            <FontAwesomeIcon className="ml-2 h-6" icon={faPaperPlane} />
           </button>
         </div>
       </form>
